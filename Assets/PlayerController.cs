@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] float MoveSpeed = 5.0f;
+    [SerializeField] float WalkSpeed = 2.0f;
+
     public float SpeedChangeRate = 10.0f;
     private float _speed;
 
@@ -24,6 +26,11 @@ public class PlayerController : MonoBehaviour
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
 
+    float stepCounter = 0;
+
+    Player _player;
+
+
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -31,7 +38,7 @@ public class PlayerController : MonoBehaviour
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         _cinemachineTargetYaw = _mainCamera.transform.rotation.eulerAngles.y;
-
+        _player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour
     void Look()
     {
 
-        
+
 
         float deltaTimeMultiplier = 1.0f;
 
@@ -71,6 +78,10 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         float targetSpeed = MoveSpeed;
+        if (_input.walk > 0)
+        {
+            targetSpeed = WalkSpeed;
+        }
 
         if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
@@ -96,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-   
+
         if (_input.move != Vector2.zero && Time.timeScale > 0)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
@@ -113,9 +124,21 @@ public class PlayerController : MonoBehaviour
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, 0, 0.0f) * Time.deltaTime);
 
-
-
-
-
+        if (currentHorizontalSpeed  > WalkSpeed + speedOffset )
+        {
+            stepCounter += Time.deltaTime;
+            if (stepCounter >= 0.3f)
+            {
+                GetComponent<scan>().StartWave(duration : GetComponent<scan>().duration/3,size : GetComponent<scan>().size/3);
+                stepCounter = 0f;
+            }
+        }
+        else
+        {
+            stepCounter = 0f;
+        }
     }
+
+
+
 }
