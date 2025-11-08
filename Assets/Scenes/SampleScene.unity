@@ -392,6 +392,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveKey: 32
   scanObject: {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
+  duration: 10
+  size: 25
+  simSpeed: 1
 --- !u!1 &115681203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2100,10 @@ PrefabInstance:
     - target: {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
       propertyPath: m_Name
       value: "test k\xFCresi"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

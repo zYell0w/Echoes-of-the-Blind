@@ -9,8 +9,11 @@ public class scan : MonoBehaviour
 
     [SerializeField] GameObject scanObject;
 
-    private float duration = 10;
-    private float size = 500;
+
+    [SerializeField] float duration = 10;
+    [SerializeField] float size = 5;
+    [SerializeField] float simSpeed = 1;
+    
 
 
     void Start()
@@ -37,6 +40,8 @@ public class scan : MonoBehaviour
             var a = psys.main;
             a.startLifetime = duration;
             a.startSize = size;
+            a.simulationSpeed = simSpeed;
+            
         }
         Destroy(terrainscanner, duration + 1);
     }
