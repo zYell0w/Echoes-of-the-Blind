@@ -12,6 +12,8 @@ Shader "Custom/OutlineWave"
         _AfterglowDuration ("Afterglow Duration", Float) = 1.0
         _AfterglowColor ("Afterglow Color", Color) = (0.8, 0.9, 1.0, 1)
         _AfterglowWidth ("Afterglow Width", Range(0, 0.2)) = 0.05
+        _PersistentGlowIntensity ("Persistent Glow Intensity", Range(0, 1)) = 0.2
+        _PersistentGlowDuration ("Persistent Glow Duration", Float) = 2.0
     }
     
     SubShader
@@ -52,6 +54,8 @@ Shader "Custom/OutlineWave"
             float _AfterglowDuration;
             float4 _AfterglowColor;
             float _AfterglowWidth;
+            float _PersistentGlowIntensity;
+            float _PersistentGlowDuration;
 
             // Wave data (set from WaveController script)
             float4 _WaveOrigin;
@@ -78,13 +82,17 @@ Shader "Custom/OutlineWave"
                 
                 // Calculate wave front position
                 float waveFront = _WaveTime * _WaveSpeed;
-                float waveDistance = abs(dist - waveFront);
+                
+                // Calculate how long ago the wave passed this point
+                float timeSinceWavePassed = (dist - waveFront) / _WaveSpeed;
                 
                 // Calculate outline strength based on wave
                 float outlineStrength = 0.0;
                 float afterglowStrength = 0.0;
+                float persistentGlowStrength = 0.0;
                 
-                // Main outline effect - only show if wave intensity is > 0
+                // Main outline effect - only show if wave intensity is > 0 and point is near wave front
+                float waveDistance = abs(dist - waveFront);
                 if (waveDistance < _OutlineWidth && _WaveIntensity > 0)
                 {
                     // Create a pulse effect
@@ -100,21 +108,13 @@ Shader "Custom/OutlineWave"
                     outlineStrength *= fresnel;
                 }
                 
-                // Afterglow effect - appears BEHIND the outline (further from wave origin)
-                // Calculate position for afterglow (slightly behind the main outline)
-                float afterglowFront = waveFront - _OutlineWidth;
-                float afterglowDistance = dist - afterglowFront;
-                
-                // Afterglow appears in the region between the back of the outline and further back
-                // Only show afterglow if wave has passed this point and intensity is > 0
-                if (afterglowDistance > 0 && afterglowDistance < _AfterglowWidth && _WaveIntensity > 0)
+                // Afterglow effect - appears immediately behind the outline
+                if (timeSinceWavePassed > 0 && timeSinceWavePassed < _AfterglowDuration && _WaveIntensity > 0)
                 {
-                    // Calculate how long ago this point was passed by the wave
-                    float timeSinceWavePassed = (dist - waveFront) / _WaveSpeed;
-                    
-                    if (timeSinceWavePassed > 0 && timeSinceWavePassed < _AfterglowDuration)
+                    // Afterglow appears in a band behind the wave front
+                    float afterglowDistance = timeSinceWavePassed * _WaveSpeed;
+                    if (afterglowDistance < _AfterglowWidth)
                     {
-                        // Afterglow strength based on distance from outline and time
                         float distanceFactor = 1.0 - (afterglowDistance / _AfterglowWidth);
                         float timeFactor = 1.0 - (timeSinceWavePassed / _AfterglowDuration);
                         
@@ -127,17 +127,42 @@ Shader "Custom/OutlineWave"
                         // Strong fresnel effect to make afterglow hug the mesh
                         float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                         float fresnel = 1.0 - abs(dot(i.worldNormal, viewDir));
-                        afterglowStrength *= fresnel * fresnel; // Squared for stronger effect on edges
+                        afterglowStrength *= fresnel * fresnel;
                     }
+                }
+
+                // Persistent glow effect - appears after the afterglow fades
+                if (timeSinceWavePassed > _AfterglowDuration && 
+                    timeSinceWavePassed < (_AfterglowDuration + _PersistentGlowDuration) && 
+                    _WaveIntensity > 0)
+                {
+                    // Calculate persistent glow strength (fades out slowly)
+                    float persistentTime = timeSinceWavePassed - _AfterglowDuration;
+                    float persistentTimeFactor = 1.0 - (persistentTime / _PersistentGlowDuration);
+                    
+                    persistentGlowStrength = persistentTimeFactor * _PersistentGlowIntensity * _WaveIntensity;
+                    
+                    // Add distance falloff
+                    float distanceFalloff = 1.0 / (1.0 + dist * _WaveFalloff);
+                    persistentGlowStrength *= distanceFalloff;
+                    
+                    // Subtle fresnel effect for persistent glow
+                    float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                    float fresnel = 0.3 + 0.7 * (1.0 - abs(dot(i.worldNormal, viewDir)));
+                    persistentGlowStrength *= fresnel;
                 }
 
                 // Sample texture and apply base color (dark)
                 fixed4 col = tex2D(_MainTex, i.uv) * _BaseColor;
                 
-                // Apply afterglow first (behind the outline)
+                // Apply effects in correct order (back to front)
+                // Persistent glow first (farthest behind)
+                col.rgb = lerp(col.rgb, _AfterglowColor.rgb, persistentGlowStrength);
+                
+                // Afterglow second (closer to wave)
                 col.rgb = lerp(col.rgb, _AfterglowColor.rgb, afterglowStrength);
                 
-                // Then apply outline on top (in front of afterglow)
+                // Outline last (wave front)
                 col.rgb = lerp(col.rgb, _OutlineColor.rgb, outlineStrength);
                 
                 return col;
