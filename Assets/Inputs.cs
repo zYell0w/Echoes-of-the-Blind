@@ -7,9 +7,13 @@ namespace Inputs
     {
         public Vector2 move;
         public Vector2 look;
-        public bool attack;
-        public bool interact;
+        public float attack;
+        public float interact;
+        public float scan;
+
         public bool cursorLocked = true;
+
+        public float walk;
         public void OnMove(InputValue value)
         {
             MoveInput(value.Get<Vector2>());
@@ -22,15 +26,23 @@ namespace Inputs
 
         public void OnAttack(InputValue value)
         {
-            AttackInput(value.isPressed);
+            AttackInput(value.Get<float>());
         }
 
         public void OnInteract(InputValue value)
         {
-            InteractInput(value.isPressed);
+            InteractInput(value.Get<float>());
         }
 
+        public void OnWalk(InputValue value)
+        {
+            WalkInput(value.Get<float>());
+        }
 
+        public void OnScan(InputValue value)
+        {
+            ScanInput(value.Get<float>());
+        }
 
 
         public void MoveInput(Vector2 newMoveDir)
@@ -43,21 +55,31 @@ namespace Inputs
             look = newLookDir;
         }
 
-        public void AttackInput(bool newAttack)
+        public void AttackInput(float newAttack)
         {
             attack = newAttack;
         }
 
-        public void InteractInput(bool newInteract)
+        public void InteractInput(float newInteract)
         {
             interact = newInteract;
+        }
+        
+        public void WalkInput(float newWalk)
+        {
+            walk = newWalk;
+        }
+
+        public void ScanInput(float newScan)
+        {
+            scan = newScan;
         }
 
         
         private void OnApplicationFocus(bool hasFocus)
-		{
-			SetCursorState(cursorLocked);
-		}
+        {
+            SetCursorState(cursorLocked);
+        }
 
 		private void SetCursorState(bool newState)
 		{

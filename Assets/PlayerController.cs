@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] float MoveSpeed = 5.0f;
+    [SerializeField] float WalkSpeed = 2.0f;
+
     public float SpeedChangeRate = 10.0f;
     private float _speed;
 
@@ -24,14 +26,19 @@ public class PlayerController : MonoBehaviour
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
 
+    float stepCounter = 0;
+
+    Player _player;
+
+
     void Start()
     {
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<CharacterInput>();
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        _cinemachineTargetYaw = _mainCamera.transform.rotation.eulerAngles.y;
-
+        _cinemachineTargetYaw = transform.rotation.eulerAngles.y;
+        _player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour
     void Look()
     {
 
-        
+
 
         float deltaTimeMultiplier = 1.0f;
 
@@ -54,11 +61,14 @@ public class PlayerController : MonoBehaviour
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
         _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
+        transform.rotation = Quaternion.Euler(0, _cinemachineTargetYaw, 0);
+
         _mainCamera.transform.rotation = Quaternion.Euler(
             _cinemachineTargetPitch + 0.0f,
             _cinemachineTargetYaw,
             0.0f
         );
+
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -71,6 +81,10 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         float targetSpeed = MoveSpeed;
+        if (_input.walk > 0)
+        {
+            targetSpeed = WalkSpeed;
+        }
 
         if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
@@ -96,11 +110,11 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-   
+
         if (_input.move != Vector2.zero && Time.timeScale > 0)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                              _mainCamera.transform.eulerAngles.y;
+                              transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 RotationSmoothTime);
 
@@ -113,9 +127,23 @@ public class PlayerController : MonoBehaviour
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, 0, 0.0f) * Time.deltaTime);
 
-
-
-
-
+        if (currentHorizontalSpeed > WalkSpeed + speedOffset)
+        {
+            stepCounter += Time.deltaTime;
+            if (stepCounter >= 0.3f)
+            {
+                //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
+                Vector3 wavePos = transform.position + transform.forward * 1.5f;
+                GetComponent<scan>().StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
+                stepCounter = 0f;
+            }
+        }
+        else
+        {
+            stepCounter = 0f;
+        }
     }
+
+
+
 }

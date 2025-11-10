@@ -19,6 +19,10 @@ public class WaveController : MonoBehaviour
     public Color afterglowColor = new Color(0.8f, 0.9f, 1.0f, 1f);
     public float afterglowWidth = 0.05f;
     
+    [Header("Persistent Glow Settings")]
+    public float persistentGlowIntensity = 0.2f;
+    public float persistentGlowDuration = 2.0f;
+    
     [Header("Advanced Settings")]
     public float waveFalloff = 2.0f;
     
@@ -63,6 +67,8 @@ public class WaveController : MonoBehaviour
         waveMaterial.SetFloat("_AfterglowDuration", afterglowDuration);
         waveMaterial.SetColor("_AfterglowColor", afterglowColor);
         waveMaterial.SetFloat("_AfterglowWidth", afterglowWidth);
+        waveMaterial.SetFloat("_PersistentGlowIntensity", persistentGlowIntensity);
+        waveMaterial.SetFloat("_PersistentGlowDuration", persistentGlowDuration);
     }
 
     void StartWave()
