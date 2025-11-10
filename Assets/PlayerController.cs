@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _input = GetComponent<CharacterInput>();
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        _cinemachineTargetYaw = _mainCamera.transform.rotation.eulerAngles.y;
+        _cinemachineTargetYaw = transform.rotation.eulerAngles.y;
         _player = GetComponent<Player>();
     }
 
@@ -61,11 +61,14 @@ public class PlayerController : MonoBehaviour
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
         _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
+        transform.rotation = Quaternion.Euler(0, _cinemachineTargetYaw, 0);
+
         _mainCamera.transform.rotation = Quaternion.Euler(
             _cinemachineTargetPitch + 0.0f,
             _cinemachineTargetYaw,
             0.0f
         );
+
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -111,7 +114,7 @@ public class PlayerController : MonoBehaviour
         if (_input.move != Vector2.zero && Time.timeScale > 0)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                              _mainCamera.transform.eulerAngles.y;
+                              transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 RotationSmoothTime);
 
@@ -124,12 +127,14 @@ public class PlayerController : MonoBehaviour
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, 0, 0.0f) * Time.deltaTime);
 
-        if (currentHorizontalSpeed  > WalkSpeed + speedOffset )
+        if (currentHorizontalSpeed > WalkSpeed + speedOffset)
         {
             stepCounter += Time.deltaTime;
             if (stepCounter >= 0.3f)
             {
-                GetComponent<scan>().StartWave(duration : GetComponent<scan>().duration/3,size : GetComponent<scan>().size/3);
+                //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
+                Vector3 wavePos = transform.position + transform.forward * 1.5f;
+                GetComponent<scan>().StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
                 stepCounter = 0f;
             }
         }
