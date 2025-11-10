@@ -1,12 +1,17 @@
 using UnityEngine;
 using Inputs;
 using UnityEngine.InputSystem;
+using Unity.Multiplayer.Center.Common.Analytics;
+using System.Collections;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private CharacterInput _input;
     private CharacterController _controller;
     private GameObject _mainCamera;
+
+    private scan _scanner; 
 
     public float TopClamp = 70.0f;
     public float BottomClamp = -30.0f;
@@ -30,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     Player _player;
 
+    [SerializeField] private Canvas _canvas;
 
+    LayerMask layerMask;
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -39,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
         _cinemachineTargetYaw = transform.rotation.eulerAngles.y;
         _player = GetComponent<Player>();
+
+        _scanner = GetComponent<scan>();
+        
+
+        layerMask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -46,6 +58,44 @@ public class PlayerController : MonoBehaviour
     {
         Look();
         Move();
+        Interact();
+        AttackAndOther();
+    }
+
+    void AttackAndOther()
+    {
+        if(_input.scan>0)
+        {
+            var a = _canvas.transform.Find("clap").gameObject;
+            _scanner.StartWave();
+            StartCoroutine(ShowImage(a));
+            
+        }
+    }
+
+    IEnumerator ShowImage(GameObject img)
+    {
+        img.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        img.SetActive(false);
+
+        yield return null;
+    }
+
+    void Interact()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+        {
+            hit.transform.gameObject.GetComponent<IInteractable>().OnHover();
+        }
+        if(_input.interact>0)
+        {
+            if(Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+            {
+                hit.transform.gameObject.GetComponent<IInteractable>().OnInteract();   
+            }
+        }
     }
 
     void Look()
@@ -134,7 +184,7 @@ public class PlayerController : MonoBehaviour
             {
                 //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
                 Vector3 wavePos = transform.position + transform.forward * 1.5f;
-                GetComponent<scan>().StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
+                _scanner.StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
                 stepCounter = 0f;
             }
         }

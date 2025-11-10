@@ -6,8 +6,6 @@ public class scan : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public KeyCode waveKey = KeyCode.Space;
-
     [SerializeField] GameObject scanObject;
 
 
@@ -25,10 +23,7 @@ public class scan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(waveKey))
-        {
-            StartWave();
-        }
+        
     }
 
     public void StartWave(float? duration = null,
