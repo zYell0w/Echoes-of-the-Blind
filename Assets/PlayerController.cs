@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 RotationSmoothTime);
 
-            //transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
 
@@ -129,7 +129,11 @@ public class PlayerController : MonoBehaviour
             stepCounter += Time.deltaTime;
             if (stepCounter >= 0.3f)
             {
-                GetComponent<scan>().StartWave(duration : GetComponent<scan>().duration/3,size : GetComponent<scan>().size/3);
+                //GetComponent<scan>().StartWave(duration : GetComponent<scan>().duration/3,size : GetComponent<scan>().size/3);
+                Vector3 wavePos = transform.position + transform.forward * 1f; // karakterin önüne 1.5 metre
+                GetComponent<scan>().StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
+                
+
                 stepCounter = 0f;
             }
         }
