@@ -8,6 +8,6 @@ interface IInteractable
         Debug.Log("Item Hovered");
     }
 
-    abstract void OnInteract();
+    abstract void OnInteract(Player interactee);
     
 }

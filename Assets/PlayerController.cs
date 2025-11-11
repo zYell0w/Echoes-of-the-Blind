@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _controller;
     private GameObject _mainCamera;
 
-    private scan _scanner; 
+    private scan _scanner;
 
     public float TopClamp = 70.0f;
     public float BottomClamp = -30.0f;
@@ -31,11 +31,24 @@ public class PlayerController : MonoBehaviour
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
 
+
+    private float _verticalVelocity;
+    private float _terminalVelocity = 53.0f;
+    private float Gravity = -15f;
+
     float stepCounter = 0;
 
     Player _player;
 
     [SerializeField] private Canvas _canvas;
+
+    public bool Grounded = true;
+
+    public float GroundedOffset = 0.7f;
+
+    public float GroundedRadius = 0.5f;
+
+    public LayerMask GroundLayers;
 
     LayerMask layerMask;
     void Start()
@@ -48,7 +61,7 @@ public class PlayerController : MonoBehaviour
         _player = GetComponent<Player>();
 
         _scanner = GetComponent<scan>();
-        
+
 
         layerMask = LayerMask.GetMask("Interactable");
     }
@@ -60,16 +73,44 @@ public class PlayerController : MonoBehaviour
         Move();
         Interact();
         AttackAndOther();
+        GroundedCheck();
+        GravityAnd();
     }
-
+    void GravityAnd()
+    {
+        if (Grounded)
+        {
+            if (_verticalVelocity < 0.0f)
+            {
+                _verticalVelocity = -2f;
+            }
+        }
+        if (_verticalVelocity < _terminalVelocity)
+        {
+            _verticalVelocity += Gravity * Time.deltaTime;
+        }
+    }
+   
     void AttackAndOther()
     {
-        if(_input.scan>0)
+        if (_input.scan > 0)
         {
             var a = _canvas.transform.Find("clap").gameObject;
             _scanner.StartWave();
             StartCoroutine(ShowImage(a));
-            
+
+        }
+
+        if (_input.drop > 0)
+        {
+            if (_player.Item != null)
+                _player.Item.Drop(_player);
+        }
+
+        if(_input.attack > 0)
+        {
+            if(_player.Weapon!=null)
+                _player.Weapon.Use();
         }
     }
 
@@ -85,15 +126,15 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         RaycastHit hit;
-        if(Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+        if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
         {
             hit.transform.gameObject.GetComponent<IInteractable>().OnHover();
         }
-        if(_input.interact>0)
+        if (_input.interact > 0)
         {
-            if(Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+            if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
             {
-                hit.transform.gameObject.GetComponent<IInteractable>().OnInteract();   
+                hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);
             }
         }
     }
@@ -126,6 +167,23 @@ public class PlayerController : MonoBehaviour
         if (lfAngle < -360f) lfAngle += 360f;
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
+    }
+
+    private void GroundedCheck()
+    {
+        // set sphere position, with offset
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            QueryTriggerInteraction.Ignore);
+
+        // update animator if using character 
+        /*
+        if (_hasAnimator)
+        {
+            _animator.SetBool(_animIDGrounded, Grounded);
+        }
+        */
     }
 
     void Move()
@@ -175,7 +233,7 @@ public class PlayerController : MonoBehaviour
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                         new Vector3(0.0f, 0, 0.0f) * Time.deltaTime);
+                         new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
         if (currentHorizontalSpeed > WalkSpeed + speedOffset)
         {
