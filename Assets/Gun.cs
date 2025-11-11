@@ -1,9 +1,19 @@
 using UnityEngine;
-
+using static UnityEngine.InputSystem.Controls.AxisControl;
+using System.Collections;
+using UnityEngine.UI;
 [RequireComponent(typeof(scan))]
+
 public class Gun : MonoBehaviour, IInteractable , IEquipable
 {
     private uint ammo = 9999;
+
+    [SerializeField] GameObject gunHand;
+    [SerializeField] Sprite[] GunImageSprite;
+    private Image ShootImage;
+    private int currentFrame = 0;
+    private bool isPlaying = false;
+    private float frameDelay = 0.1f;
 
     LayerMask layerMask;
 
@@ -39,6 +49,7 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
         else
             return false;*/
         RaycastHit hit;
+        StartCoroutine(ShowImage(gunHand));
         if (Physics.Raycast(transform.position, transform.forward, out hit, int.MaxValue , layerMask))
         {
             //hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);
@@ -67,5 +78,32 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
     public void OnInteract(Player interactee)
     {
         Equip(interactee);
+        
     }
+
+    IEnumerator ShowImage(GameObject gunImageObject)
+    {
+        ShootImage = gunHand.GetComponent<Image>();
+        gunImageObject.SetActive(true);
+        if (isPlaying == false)
+        {
+
+            isPlaying = true;
+            while (currentFrame < GunImageSprite.Length)
+            {
+                ShootImage.sprite = GunImageSprite[currentFrame];
+                currentFrame++;
+                yield return new WaitForSeconds(frameDelay);
+            }
+            currentFrame = 0;
+            isPlaying = false;
+            gunImageObject.SetActive(false);
+        }
+
+        yield return null;
+    }
+
+
 }
+
+
