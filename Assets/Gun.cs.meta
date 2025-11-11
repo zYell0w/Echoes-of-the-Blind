@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: f48a4238ad78a4a00ae5edd4cee4713a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gunHand: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

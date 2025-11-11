@@ -20,6 +20,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float MoveSpeed = 5.0f;
     [SerializeField] float WalkSpeed = 2.0f;
 
+    [SerializeField] Sprite[] clapImageSprite;
+    [SerializeField] GameObject clap;
+    private Image clapImage;
+    private int currentFrame = 0;
+    private bool isPlaying = false;
+    private float frameDelay = 0.1f;
+
+
+
+
     public float SpeedChangeRate = 10.0f;
     private float _speed;
 
@@ -90,14 +100,14 @@ public class PlayerController : MonoBehaviour
             _verticalVelocity += Gravity * Time.deltaTime;
         }
     }
-   
+
     void AttackAndOther()
     {
         if (_input.scan > 0)
         {
-            var a = _canvas.transform.Find("clap").gameObject;
+            //var a = _canvas.transform.Find("clap").gameObject;
             _scanner.StartWave();
-            StartCoroutine(ShowImage(a));
+            StartCoroutine(ShowImage(clap));
 
         }
 
@@ -107,19 +117,38 @@ public class PlayerController : MonoBehaviour
                 _player.Item.Drop(_player);
         }
 
-        if(_input.attack > 0)
+        if (_input.attack > 0)
         {
-            if(_player.Weapon!=null)
+            if (_player.Weapon != null)
                 _player.Weapon.Use();
         }
     }
 
-    IEnumerator ShowImage(GameObject img)
+    IEnumerator ShowImage(GameObject clapImageObject)
     {
+        clapImage = clap.GetComponent<Image>();
+        clapImageObject.SetActive(true);
+        if (isPlaying == false) {
+
+            isPlaying = true;
+            while (currentFrame < clapImageSprite.Length)
+            {
+                clapImage.sprite = clapImageSprite[currentFrame];
+                currentFrame++;
+                yield return new WaitForSeconds(frameDelay);
+            }
+            currentFrame = 0;
+            isPlaying = false;
+            clapImageObject.SetActive(false);
+        }
+
+
+
+        /*
         img.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         img.SetActive(false);
-
+        */
         yield return null;
     }
 
