@@ -10,6 +10,8 @@ namespace Inputs
         public float attack;
         public float interact;
         public float scan;
+        public float drop;
+
 
         public bool cursorLocked = true;
 
@@ -44,6 +46,11 @@ namespace Inputs
             ScanInput(value.Get<float>());
         }
 
+        public void OnDrop(InputValue value)
+        {
+            DropInput(value.Get<float>());
+        }
+
 
         public void MoveInput(Vector2 newMoveDir)
         {
@@ -73,6 +80,11 @@ namespace Inputs
         public void ScanInput(float newScan)
         {
             scan = newScan;
+        }
+
+        public void DropInput(float newDrop)
+        {
+            drop = newDrop;
         }
 
         
