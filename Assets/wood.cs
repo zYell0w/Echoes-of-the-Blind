@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public interface Iscanlistener 
+public class wood : Item
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-
-    abstract public void ScanDetected();
 }
