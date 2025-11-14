@@ -30,7 +30,7 @@ public class scandetector : MonoBehaviour
 
                 // Now you can use the collider's GameObject
                 GameObject triggeredObject = triggeredCollider.gameObject;
-                triggeredObject.GetComponent<scanlistener>().ScanDetected();
+                triggeredObject.GetComponent<Iscanlistener>().ScanDetected();
                 Debug.LogError("yo");
                 
             }
