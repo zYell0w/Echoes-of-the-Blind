@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     Player _player;
 
+    [SerializeField] private float InteractRange = 10.0f; 
+
     [SerializeField] private Canvas _canvas;
 
     public bool Grounded = true;
@@ -155,13 +157,13 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         RaycastHit hit;
-        if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+        if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, InteractRange, layerMask))
         {
             hit.transform.gameObject.GetComponent<IInteractable>().OnHover();
         }
         if (_input.interact > 0)
         {
-            if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, 5.0f, layerMask))
+            if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, InteractRange, layerMask))
             {
                 hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);
             }
