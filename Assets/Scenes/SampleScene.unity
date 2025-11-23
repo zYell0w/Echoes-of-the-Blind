@@ -34951,6 +34951,74 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5836392060598564762, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
+--- !u!1 &1595870646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595870648}
+  - component: {fileID: 1595870647}
+  - component: {fileID: 1595870649}
+  m_Layer: 6
+  m_Name: Entry door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1595870647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595870646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04be39a66e0d5485597821dd71658133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::entry_door
+  belled: 0
+  barricaded: 0
+--- !u!4 &1595870648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595870646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -54.177, y: 11.514, z: 2.29434}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1595870649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595870646}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.69, y: 3.6, z: 0.24}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1596069401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -365660772959552465, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -44806,3 +44874,4 @@ SceneRoots:
   - {fileID: 618055668}
   - {fileID: 15298164}
   - {fileID: 502208739}
+  - {fileID: 1595870648}
