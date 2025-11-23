@@ -9,17 +9,14 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener
 
     public void OnInteract(Player interactee)
     {
-        interactee.Item.TryGetComponent<door_bell>(out door_bell bell);
-        interactee.Item.TryGetComponent<blockade_chair>(out blockade_chair chair);
-
-        if(bell != null)
+        if(interactee.Item?.GetComponent<door_bell>() != null)
         {
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;            
             belled = true;
 
         }
-        else if(chair != null)
+        else if(interactee.Item?.GetComponent<blockade_chair>() != null)
         {
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;            
