@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
             if (stepCounter >= 0.3f)
             {
                 //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
-                Vector3 wavePos = transform.position + transform.forward * 1.5f;
+                Vector3 wavePos = transform.position + targetDirection.normalized * 1.5f;
                 _scanner.StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
                 stepCounter = 0f;
             }

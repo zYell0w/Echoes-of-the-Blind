@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Item Item {get; set;}
-    public Gun Weapon {get; set;}
+    [SerializeField] public Item Item {get; set;}
+    [SerializeField] public Gun Weapon {get; set;}
     public float health = 100f;
     public float stamina = 100f;
 
