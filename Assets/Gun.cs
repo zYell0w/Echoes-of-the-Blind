@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour, IInteractable , IEquipable
 {
-    private uint ammo = 9999;
+    private int ammo = 6;
 
     [SerializeField] GameObject gunHand;
     [SerializeField] Sprite[] GunImageSprite;
@@ -14,6 +14,11 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
     private int currentFrame = 0;
     private bool isPlaying = false;
     private float frameDelay = 0.1f;
+
+    private float cooldown = 0.5f;
+    private float cooldownCounter = 0f;
+
+    private bool ready = true;
 
     LayerMask layerMask;
 
@@ -23,6 +28,20 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
     {
         _scan = GetComponent<scan>();
         layerMask = LayerMask.GetMask("Default","Enemy");
+    }
+
+    void Update()
+    {
+        if(!ready)
+        {
+            cooldownCounter+=Time.deltaTime;
+        }
+        if(cooldownCounter >= cooldown)
+        {
+            cooldownCounter = 0;
+            ready=true;
+        }
+
     }
 
     public void Drop(Player interactee)
@@ -43,20 +62,26 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
 
     public bool Use()
     {
-        /*
+        if(!ready)
+            return false;
+        
         if(ammo>0)
             ammo--;
         else
-            return false;*/
+            return false;
+        
         RaycastHit hit;
         StartCoroutine(ShowImage(gunHand));
         if (Physics.Raycast(transform.position, transform.forward, out hit, int.MaxValue , layerMask))
         {
             //hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);
             _scan.StartWave(position:hit.point);
-         
-            Debug.LogError("saas");
+            if(hit.transform.gameObject.GetComponent<Enemy>()!=null)
+            {
+                hit.transform.gameObject.GetComponent<Enemy>().Hit();
+            }
         }
+        ready = false;
         return true;
     }
 

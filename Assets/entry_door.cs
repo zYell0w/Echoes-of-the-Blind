@@ -26,7 +26,7 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener
         }
     }
 
-    public void ScanDetected()
+    public void ScanDetected(Vector3 scanLocation)
     {
         throw new System.NotImplementedException();
     }
