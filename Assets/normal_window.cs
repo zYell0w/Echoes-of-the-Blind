@@ -11,7 +11,9 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
         
     }
 
-    public void ScanDetected()
+   
+
+    public void ScanDetected(Vector3 scanLocation)
     {
         throw new System.NotImplementedException();
     }

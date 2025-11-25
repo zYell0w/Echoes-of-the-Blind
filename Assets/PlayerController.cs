@@ -103,14 +103,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    float scanCooldown = 0.5f;
+    float scanCounter = 0f;
     void AttackAndOther()
     {
-        if (_input.scan > 0)
+        scanCounter+=Time.deltaTime;
+        if (_input.scan > 0 && scanCounter >= scanCooldown)
         {
             //var a = _canvas.transform.Find("clap").gameObject;
             _scanner.StartWave();
             StartCoroutine(ShowImage(clap));
-
+            scanCounter=0;
         }
 
         if (_input.drop > 0)
