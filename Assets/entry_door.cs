@@ -14,6 +14,8 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;            
             belled = true;
+            BellObjectToShow.SetActive(true);
+
 
         }
         else if(interactee.Item?.GetComponent<blockade_chair>() != null)
