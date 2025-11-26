@@ -30,8 +30,8 @@ public class scandetector : MonoBehaviour
 
                 // Now you can use the collider's GameObject
                 GameObject triggeredObject = triggeredCollider.gameObject;
-                triggeredObject.GetComponent<Iscanlistener>().ScanDetected();
-                Debug.LogError("yo");
+                triggeredObject.GetComponent<Iscanlistener>().ScanDetected(ps.transform.position);
+                //Debug.LogError("yo");
                 
             }
             enterParticles[i] = p; // Save the modified particle

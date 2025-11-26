@@ -32,7 +32,7 @@ public class broken_window : MonoBehaviour , Iscanlistener , IInteractable
         }
     }
 
-    public void ScanDetected()
+    public void ScanDetected(Vector3 scanLocation)
     {
         throw new System.NotImplementedException();
     }

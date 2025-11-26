@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour , Iscanlistener
 {
     [SerializeField] public Item Item {get; set;}
     [SerializeField] public Gun Weapon {get; set;}
@@ -12,5 +12,10 @@ public class Player : MonoBehaviour
     public void Die()
     {
         //bruh
+    }
+
+    public void ScanDetected(Vector3 scanLocation)
+    {
+        GetComponent<scan>().StartWave();
     }
 }   

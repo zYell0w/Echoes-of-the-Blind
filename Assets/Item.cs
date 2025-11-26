@@ -5,9 +5,11 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
     {
         Debug.Log("Interacted");
         interactee.Item = null;
-        GetComponent<Collider>().enabled = true;
-
-        //transform.localPosition = Vector3.forward*1.5f;
+        foreach(Collider c in  GetComponents<Collider>())
+            c.enabled = true;
+        if(GetComponent<Collider>().bounds.center.y<transform.parent.parent.position.y-1)
+            transform.position+=Vector3.up*2f;
+        //transform.position =  transform.parent.position+transform.parent.parent.forward*1.3f;
 
         //transform.localRotation = Quaternion.identity;
 
@@ -24,12 +26,18 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         if(interactee.Item != null)
             interactee.Item.Drop(interactee);
         interactee.Item = this;
-        GetComponent<Collider>().enabled = false;
+        foreach(Collider c in  GetComponents<Collider>())
+            c.enabled = false;
+        
         GetComponent<Rigidbody>().isKinematic = true;
+
         GetComponent<MeshRenderer>().enabled = false;
 
         transform.parent = interactee.transform.Find("Main Camera");
-        //transform.localPosition = Vector3.zero;
+
+        //transform.position = transform.parent.position + transform.parent.forward*1.5f;
+        
+        //transform.localPosition = Vector3.forward * 2;
         //transform.localRotation = Quaternion.identity;
     }
 
