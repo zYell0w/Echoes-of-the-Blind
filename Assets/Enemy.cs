@@ -63,7 +63,19 @@ public class Enemy : MonoBehaviour , Iscanlistener
 
     public void Hit()
     {
-        Debug.Log("vurulduk da");
+        StartCoroutine(hitCourontine());
+    }
+
+    IEnumerator hitCourontine()
+    {
+        float counter = 0;
+        while(counter<=5)
+        {
+            counter+=Time.deltaTime;
+            target = transform.position;
+            Step();
+            yield return null;
+        }
     }
 
     // Update is called once per frame

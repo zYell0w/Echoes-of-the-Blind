@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     Player _player;
 
-    [SerializeField] private float InteractRange = 10.0f; 
+    [SerializeField] private float InteractRange = 2.0f; 
 
     [SerializeField] private Canvas _canvas;
 
