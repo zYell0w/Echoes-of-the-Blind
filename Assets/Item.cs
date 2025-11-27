@@ -34,6 +34,10 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         GetComponent<MeshRenderer>().enabled = false;
 
         transform.parent = interactee.transform.Find("Main Camera");
+        if(interactee.Item.GetComponent<wood>() != null)
+            AudioManager.instance.Play("WoodGrabSound");
+        else
+        AudioManager.instance.Play("GrabSound");
 
         //transform.position = transform.parent.position + transform.parent.forward*1.5f;
         

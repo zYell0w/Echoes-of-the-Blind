@@ -9669,6 +9669,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 0
+    preventOverlap: 0
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -9682,6 +9683,7 @@ MonoBehaviour:
     volume: 1
     pitch: 0.71
     loop: 0
+    preventOverlap: 0
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -9690,26 +9692,27 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Walking
     clips:
-    - {fileID: 8300000, guid: 773db313842b03c4d847f621f43acbde, type: 3}
     - {fileID: 8300000, guid: c55e6d0cfd066c74a92e47913984c48d, type: 3}
     - {fileID: 8300000, guid: 9410f5c10a6df184bbc49ff4644771bd, type: 3}
     mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
     volume: 0.1
-    pitch: 1
+    pitch: 1.2
     loop: 0
-    volumeVariance: 0.1
+    preventOverlap: 0
+    volumeVariance: 0.05
     pitchVariance: 0.1
     spatialBlend: 0
     minDistance: 5
     maxDistance: 25
     source: {fileID: 0}
-  - name: Grab
+  - name: GrabSound
     clips:
     - {fileID: 8300000, guid: 775e93ff295561c4899dd6cbff2188b6, type: 3}
     mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
-    volume: 0.6
+    volume: 1
     pitch: 1
     loop: 0
+    preventOverlap: 0
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -9720,9 +9723,10 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: adaef57f6dde4b643be38160a0c796ad, type: 3}
     mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
-    volume: 0.6
+    volume: 0.4
     pitch: 1
     loop: 0
+    preventOverlap: 1
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -9733,13 +9737,56 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: d64272724f0fbcb47a953b478b4f7eea, type: 3}
     mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
-    volume: 0.6
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 0
+    volumeVariance: 0.1
+    pitchVariance: 0.1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 25
+    source: {fileID: 0}
+  - name: WoodGrabSound
+    clips:
+    - {fileID: 8300000, guid: 5d0480eb7e588854eb153dec82ea64ba, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 0.7
     pitch: 1
     loop: 0
+    preventOverlap: 0
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
     minDistance: 5
+    maxDistance: 25
+    source: {fileID: 0}
+  - name: EnemyNearSound
+    clips:
+    - {fileID: 8300000, guid: 720cda689239c1d40978662c6a988373, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.81
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.2
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 25
+    source: {fileID: 0}
+  - name: "t\xFCts\xFCZippoSound"
+    clips:
+    - {fileID: 8300000, guid: cef78a9e199247a4388e155539c53d34, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 0.6
+    pitch: 0.8
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.2
+    spatialBlend: 0
+    minDistance: 1
     maxDistance: 25
     source: {fileID: 0}
 --- !u!4 &510807829

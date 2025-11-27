@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour
         if (currentHorizontalSpeed > WalkSpeed + speedOffset)
         {
             stepCounter += Time.deltaTime;
-            if (stepCounter >= 0.3f)
+            if (stepCounter >= 0.5f)
             {
                 //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
                 Vector3 wavePos = transform.position + targetDirection.normalized * 1.5f;
