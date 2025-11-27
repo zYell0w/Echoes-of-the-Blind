@@ -13,8 +13,13 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
     public void OnInteract(Player interactee)
     {
         holding = true;
-        if(counter<max)
-            counter+=Time.deltaTime;
+        if (counter < max)
+        {
+            counter += Time.deltaTime;
+            AudioManager.instance.Play("CurtainClosingSound");
+        }
+
+            
         
     }
 
@@ -31,7 +36,7 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
         perde = transform.Find("perde").gameObject;
         startX = perde.transform.localScale.x;
         perdeScale = transform.localScale;
-        counter = max;
+        counter = 10;
     }
 
     // Update is called once per frame

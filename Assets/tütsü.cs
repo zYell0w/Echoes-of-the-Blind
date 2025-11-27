@@ -41,11 +41,11 @@ public class tütsü : MonoBehaviour, IInteractable
         burn();
     }
 
-    void burn()
+    async void burn()
     {
         if (stillBurning == null)
         {
-
+            AudioManager.instance.Play("tütsüZippoSound");
             stillBurning = StartCoroutine(BurningCoroutine());
 
         }
@@ -59,6 +59,7 @@ public class tütsü : MonoBehaviour, IInteractable
 
     IEnumerator BurningCoroutine()
     {
+        yield return new WaitForSeconds(1f);
         float zaman = 0f;
         tütsüCounter++;
         

@@ -14,18 +14,20 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        // Müzik ve Sabit 2D sesler (Loop gerekenler) için baþlangýçta Source oluþturuyoruz
         foreach (Sound s in sounds)
         {
-            // Sadece Loop olacak veya 2D müzik olacaksa Source'u baþtan oluþturup saklýyoruz.
-            // Anlýk efektler (silah, çýðlýk) için buna gerek yok, onlarý aþaðýda dinamik oluþturacaðýz.
-            if (s.loop || s.spatialBlend == 0)
+            // Müzikler (Loop) VE Çakýþmasý Ýstenmeyen Sesler (PreventOverlap) için
+            // en baþtan bir hoparlör oluþturup saklýyoruz.
+            if (s.loop || s.preventOverlap)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clips.Length > 0 ? s.clips[0] : null;
                 s.source.outputAudioMixerGroup = s.mixerGroup;
                 s.source.loop = s.loop;
                 s.source.spatialBlend = s.spatialBlend;
+                s.source.minDistance = s.minDistance;
+                s.source.maxDistance = s.maxDistance;
+                s.source.rolloffMode = AudioRolloffMode.Logarithmic;
             }
         }
     }
@@ -37,42 +39,46 @@ public class AudioManager : MonoBehaviour
     public void Play(string name, Vector3? position = null)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null || s.clips.Length == 0)
-        {
-            Debug.LogWarning("Ses veya Klip bulunamadý: " + name);
-            return;
-        }
+        if (s == null || s.clips.Length == 0) return;
 
-        // 1. Rastgelelik Hesapla (Hangi klip? Hangi ton?)
+        // Varyasyon hesaplamalarý
         AudioClip selectedClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
         float finalVolume = s.volume + UnityEngine.Random.Range(-s.volumeVariance, s.volumeVariance);
         float finalPitch = s.pitch + UnityEngine.Random.Range(-s.pitchVariance, s.pitchVariance);
 
-        // 2. Duruma Göre Çal
-
-        // DURUM A: Eðer bu bir arka plan müziðiyse (Loop varsa veya SpatialBlend 0 ise)
-        // Kendi üzerindeki sabit Source'u kullanýr.
-        if (s.loop || s.spatialBlend == 0)
+        // --- SENARYO 1: Tek Ses Olmasý Gerekenler (Müzik veya Kalp Atýþý) ---
+        if (s.loop || s.preventOverlap)
         {
+            if (s.source == null) return;
+
+            // ÖNEMLÝ KISIM: Zaten çalýyorsa ne yapalým?
+            if (s.source.isPlaying)
+            {
+                // Eðer bu bir 'Loop' deðilse ama 'Overlap' istenmiyorsa (Kalp atýþý gibi)
+                // ve þu an zaten çalýyorsa -> HÝÇBÝR ÞEY YAPMA, ÇIK.
+                if (s.preventOverlap && !s.loop) return;
+
+                // Müzikse zaten devam etsin.
+                if (s.loop) return;
+            }
+
+            // Çalmýyorsa baþlat
             s.source.clip = selectedClip;
             s.source.volume = finalVolume;
             s.source.pitch = finalPitch;
-            if (!s.source.isPlaying) s.source.Play();
+            // Pozisyon güncelle (Kalp atýþý oyuncuyu takip etsin diye 2D çalabilir veya konumu güncellenebilir)
+            if (position.HasValue) s.source.transform.position = position.Value;
+
+            s.source.Play();
             return;
         }
 
-        // DURUM B: Anlýk Efekt (Silah, Çýðlýk, Adým Sesi)
-        // Geçici bir obje oluþturup sesi orada çalýp yok ederiz.
+        // --- SENARYO 2: Üst Üste Binebilenler (Silah, Patlama) ---
         GameObject tempGO = new GameObject("TempAudio_" + name);
-
-        // Pozisyon verildi mi? Verildiyse oraya git, verilmediyse Manager'ýn üstünde kal.
-        if (position.HasValue)
-            tempGO.transform.position = position.Value;
-        else
-            tempGO.transform.position = Camera.main.transform.position; // Oyuncunun kafasýnda çal (2D gibi hissettirir)
+        if (position.HasValue) tempGO.transform.position = position.Value;
+        else tempGO.transform.position = Camera.main.transform.position;
 
         AudioSource aSource = tempGO.AddComponent<AudioSource>();
-
         aSource.clip = selectedClip;
         aSource.outputAudioMixerGroup = s.mixerGroup;
         aSource.volume = finalVolume;
@@ -83,6 +89,6 @@ public class AudioManager : MonoBehaviour
         aSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
         aSource.Play();
-        Destroy(tempGO, selectedClip.length + 0.1f); // Ses bitince çöpü temizle
+        Destroy(tempGO, selectedClip.length + 0.1f);
     }
 }
