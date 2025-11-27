@@ -1,8 +1,11 @@
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
+    private bool _dropped = false;
+    [SerializeField] scan scan;
     public void Drop(Player interactee)
     {
+        _dropped = true;
         Debug.Log("Interacted");
         interactee.Item = null;
         foreach(Collider c in  GetComponents<Collider>())
@@ -10,7 +13,7 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         if(GetComponent<Collider>().bounds.center.y<transform.parent.parent.position.y-1)
             transform.position+=Vector3.up*2f;
         //transform.position =  transform.parent.position+transform.parent.parent.forward*1.3f;
-
+        
         //transform.localRotation = Quaternion.identity;
 
         transform.parent = null;
@@ -26,6 +29,7 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         if(interactee.Item != null)
             interactee.Item.Drop(interactee);
         interactee.Item = this;
+        scan = interactee.GetComponent<scan>();
         foreach(Collider c in  GetComponents<Collider>())
             c.enabled = false;
         
@@ -45,7 +49,16 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         //transform.localRotation = Quaternion.identity;
     }
 
-    
+    void OnCollisionEnter(Collision collision)
+    {
+        if(_dropped && scan!=null)
+        {
+            scan.StartWave(position:collision.GetContact(0).point,size:3);
+        }
+        _dropped=false;
+    }
+
+
     public void OnInteract(Player interactee)
     {
        Equip(interactee);

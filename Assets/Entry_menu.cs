@@ -11,6 +11,7 @@ public class Entry_menu : MonoBehaviour
     void Start()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
+        gameObject.SetActive(true);
     }
 
     // Update is called once per frame
