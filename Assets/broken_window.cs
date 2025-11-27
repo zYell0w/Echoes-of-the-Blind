@@ -1,10 +1,33 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class broken_window : MonoBehaviour , Iscanlistener , IInteractable
+public class broken_window : MonoBehaviour , Iscanlistener , IInteractable , IMission
 {
     [SerializeField] private int woodCount = 0;
     [SerializeField] List<GameObject> woodObjectsToShow = new();
+
+   
+
+    public void SetCompletion(float degree)
+    {
+        if(degree>0)
+            woodCount = (int) Math.Round(degree * (float)woodObjectsToShow.Count / 100);
+        else
+            woodCount = Math.Min(woodCount,Math.Abs((int) Math.Round(degree * (float)woodObjectsToShow.Count / 100)));
+
+    }
+    
+
+    public bool IsDone()
+    {
+        if(woodCount>0) 
+            return true;
+        else
+            return false;
+    }
+    
+
     public void OnInteract(Player interactee)
     {
         
@@ -25,7 +48,7 @@ public class broken_window : MonoBehaviour , Iscanlistener , IInteractable
                 if(wood.activeSelf == false)
                     availableWoods.Add(wood);   
             }
-            int random = Random.Range(0,availableWoods.Count);
+            int random = UnityEngine.Random.Range(0,availableWoods.Count);
             availableWoods[random].SetActive(true);
 
             //başarılı ses efekti
@@ -40,6 +63,11 @@ public class broken_window : MonoBehaviour , Iscanlistener , IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _update_wood();
+    }
+
+    private void _update_wood()
+    {
         foreach(GameObject wood in woodObjectsToShow)
         {
             wood.SetActive(false);
@@ -51,4 +79,6 @@ public class broken_window : MonoBehaviour , Iscanlistener , IInteractable
     {
         
     }
+
+    
 }

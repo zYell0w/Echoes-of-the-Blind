@@ -28,14 +28,16 @@ public class menu : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        controller.look_enabled = true;
+        if(controller!=null)
+            controller.look_enabled = true;
         
     }
 
     private void OnEnable() {
         Time.timeScale = 0;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        controller.look_enabled = false;
+        if(controller!=null)
+            controller.look_enabled = false;
     }
 
     public void OnExit()

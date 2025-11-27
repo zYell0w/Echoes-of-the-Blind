@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
             a = Instantiate(feet[0].gameObject);
             a.transform.position  = feet[0].transform.position;
             a.transform.rotation = feet[0].transform.rotation;
-            AudioManager.instance.Play("EnemyStepSound");
+            if(!hitted)
+                AudioManager.instance.Play("EnemyStepSound");
 
             step =!step;
         }
@@ -54,7 +55,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
             a = Instantiate(feet[1].gameObject);
             a.transform.position  = feet[1].transform.position;
             a.transform.rotation = feet[1].transform.rotation;
-            AudioManager.instance.Play("EnemyStepSound");
+            if(!hitted)
+                AudioManager.instance.Play("EnemyStepSound");
             step =!step;
 
         }
