@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 using Unity.Multiplayer.Center.Common.Analytics;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
+using System;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,6 +48,8 @@ public class PlayerController : MonoBehaviour
     private float _terminalVelocity = 53.0f;
     private float Gravity = -15f;
 
+    [SerializeField] private GameObject _menu;
+
     float stepCounter = 0;
 
     Player _player;
@@ -87,7 +91,18 @@ public class PlayerController : MonoBehaviour
         AttackAndOther();
         GroundedCheck();
         GravityAnd();
+        Menu();
     }
+
+    private void Menu()
+    {
+        if(_input.menu)
+        {
+            _menu.SetActive(!_menu.activeSelf);
+            _input.menu=false;
+        }
+    }
+
     void GravityAnd()
     {
         if (Grounded)
