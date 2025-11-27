@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private CharacterInput _input;
+    
     private CharacterController _controller;
     private GameObject _mainCamera;
 
@@ -85,7 +86,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Look();
+        if(look_enabled)
+            Look();
         Move();
         Interact();
         AttackAndOther();
@@ -120,6 +122,8 @@ public class PlayerController : MonoBehaviour
 
     float scanCooldown = 1f;
     float scanCounter = 0f;
+    public bool look_enabled = true;
+
     void AttackAndOther()
     {
         scanCounter+=Time.deltaTime;

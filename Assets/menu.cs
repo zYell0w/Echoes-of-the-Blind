@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class menu : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public PlayerController controller;
     void Start()
     {
         gameObject.SetActive(false);
+        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -25,17 +28,18 @@ public class menu : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        controller.look_enabled = true;
         
     }
 
     private void OnEnable() {
         Time.timeScale = 0;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        
+        controller.look_enabled = false;
     }
 
     public void OnExit()
     {
-        //sahbe değişimi
+        SceneManager.LoadScene(0);
     }
 }
