@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
     private bool isPlaying = false;
     private float frameDelay = 0.1f;
 
-    private float cooldown = 0.5f;
+    private float cooldown = 1f;
     private float cooldownCounter = 0f;
 
     private bool ready = true;
@@ -68,10 +68,15 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
         if(ammo>0)
             ammo--;
         else
+        {
+            AudioManager.instance.Play("NoAmmoSound");
             return false;
+        }
+            
         
         RaycastHit hit;
         StartCoroutine(ShowImage(gunHand));
+        AudioManager.instance.Play("PistolShootingSound");
         if (Physics.Raycast(transform.position, transform.forward, out hit, int.MaxValue , layerMask))
         {
             //hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);

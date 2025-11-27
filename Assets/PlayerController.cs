@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float scanCooldown = 0.5f;
+    float scanCooldown = 1f;
     float scanCounter = 0f;
     void AttackAndOther()
     {
@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
             //var a = _canvas.transform.Find("clap").gameObject;
             _scanner.StartWave();
             StartCoroutine(ShowImage(clap));
+            AudioManager.instance.Play("FingerSnapSound");
             scanCounter=0;
         }
 
@@ -291,7 +292,9 @@ public class PlayerController : MonoBehaviour
             {
                 //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
                 Vector3 wavePos = transform.position + targetDirection.normalized * 1.5f;
+                AudioManager.instance.Play("Walking");
                 _scanner.StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
+                
                 stepCounter = 0f;
             }
         }

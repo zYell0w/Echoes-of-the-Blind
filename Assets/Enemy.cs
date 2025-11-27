@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
     public void Hit()
     {
         StartCoroutine(hitCourontine());
+        AudioManager.instance.Play("MonsterHitRoar");
     }
 
     IEnumerator hitCourontine()
