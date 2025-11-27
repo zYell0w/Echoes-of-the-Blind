@@ -11,12 +11,13 @@ public class Enemy : MonoBehaviour , Iscanlistener
 
     [SerializeField] private float stepLength = 1.0f;
     private scan scan;
+    private bool hitted = false;
     NavMeshAgent agent; 
 
     [SerializeField] public Vector3 target;
 
     float stepCounter = 0;
-    float stepTime = 1.0f;
+    float stepTime = 0.9f;
 
     [SerializeField] GameObject [] feet = {null,null};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,18 +40,22 @@ public class Enemy : MonoBehaviour , Iscanlistener
         GameObject a;
         if(step)
         {
+            
             a = Instantiate(feet[0].gameObject);
             a.transform.position  = feet[0].transform.position;
             a.transform.rotation = feet[0].transform.rotation;
+            AudioManager.instance.Play("EnemyStepSound");
 
-            step=!step;
+            step =!step;
         }
         else
         {
+
             a = Instantiate(feet[1].gameObject);
             a.transform.position  = feet[1].transform.position;
             a.transform.rotation = feet[1].transform.rotation;
-            step=!step;
+            AudioManager.instance.Play("EnemyStepSound");
+            step =!step;
 
         }
         a.SetActive(true);
@@ -70,6 +75,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
     IEnumerator hitCourontine()
     {
         float counter = 0;
+        hitted = true;
         while(counter<=5)
         {
             counter+=Time.deltaTime;
@@ -77,6 +83,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
             Step();
             yield return null;
         }
+        hitted = false;
     }
 
     // Update is called once per frame
@@ -89,6 +96,11 @@ public class Enemy : MonoBehaviour , Iscanlistener
         if(agent.remainingDistance!=0)
             stepCounter+=Time.deltaTime;
 
+        if (hitted == false) {
+
+            AudioManager.instance.Play("EnemyBreathing");
+        
+        }
         
 
         if(stepCounter >= stepTime)

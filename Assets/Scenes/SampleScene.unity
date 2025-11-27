@@ -9789,6 +9789,50 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 25
     source: {fileID: 0}
+  - name: EnemyBreathing
+    clips:
+    - {fileID: 8300000, guid: 3d812538787cd4f4794dffe68edb44e1, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.4
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 25
+    source: {fileID: 0}
+  - name: EnemyStepSound
+    clips:
+    - {fileID: 8300000, guid: 07aa6b647e21bc84385367a50cfe2d34, type: 3}
+    - {fileID: 8300000, guid: 8edd9a83dd3e7a848b4dd1ac6828a1d7, type: 3}
+    - {fileID: 8300000, guid: 796f4b14410bbbc49a7e48abc0429932, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 0
+    volumeVariance: 0.1
+    pitchVariance: 0.1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 25
+    source: {fileID: 0}
+  - name: CurtainClosingSound
+    clips:
+    - {fileID: 8300000, guid: d35350f52e2fe5445a3c785b88d81960, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 0.6
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 25
+    source: {fileID: 0}
 --- !u!4 &510807829
 Transform:
   m_ObjectHideFlags: 0
@@ -46879,6 +46923,10 @@ PrefabInstance:
     - target: {fileID: 4884388215460568753, guid: 6e0f1f467e1de95ec832fd6d67678646, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027349657805643616, guid: 6e0f1f467e1de95ec832fd6d67678646, type: 3}
+      propertyPath: counter
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
