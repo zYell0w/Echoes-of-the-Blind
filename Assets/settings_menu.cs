@@ -20,8 +20,22 @@ public class settings_menu : MonoBehaviour
 
     public void OnApplyButton()
     {
-        SaveSettings();
         gameObject.SetActive(false);
+    }
+
+    public void OnResChange()
+    {
+        
+    }
+
+    public void OnFulscreenToggle()
+    {
+        
+    }
+
+    public void OnVolumeSlider()
+    {
+        
     }
 
     void OnDisable()
@@ -29,8 +43,5 @@ public class settings_menu : MonoBehaviour
         entryMenu.SetActive(true);
     }
 
-    void SaveSettings()
-    {
-        
-    }
+    
 }
