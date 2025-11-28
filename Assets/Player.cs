@@ -20,4 +20,12 @@ public class Player : MonoBehaviour , Iscanlistener
         GetComponent<scan>().StartWave(waveIndex:1);
         AudioManager.instance.Play("EnemyNearSound");
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<Enemy>() != null)
+        {
+            //finito  la partita
+        }
+    }
 }   

@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections;
 [RequireComponent(typeof(scan))]
-public class tütsü : MonoBehaviour, IInteractable ,IMission
+public class tütsü : MonoBehaviour ,IMission
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
-    
+        [SerializeField] Vector3 spawnPoint = new();
+
     
     public static uint tütsüCounter = 0; //4 tanesi aynı anda yanarsayı falan bu countere göre çözcez
 
     private Coroutine stillBurning;
     private Collider col;
-    Vector3 spawnPoint;
 
 
     scan _scan;
@@ -95,6 +95,16 @@ public class tütsü : MonoBehaviour, IInteractable ,IMission
         {
             burn();
         }
+    }
+
+    public Vector3 GetSpawnPointForEnemy()
+    {
+        return spawnPoint;
+    }
+
+    public void ScanDetected(Vector3 scanLocation)
+    {
+        throw new System.NotImplementedException();
     }
 }
 

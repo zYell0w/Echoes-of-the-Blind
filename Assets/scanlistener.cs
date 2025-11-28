@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface Iscanlistener
 {
-    abstract public void ScanDetected(Vector3 scanLocation);
+    public abstract void ScanDetected(Vector3 scanLocation);
+
 }

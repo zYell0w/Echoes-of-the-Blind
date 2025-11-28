@@ -89,8 +89,12 @@ public class PlayerController : MonoBehaviour
         if(look_enabled)
             Look();
         Move();
-        Interact();
-        AttackAndOther();
+
+        if(interact_enabled)
+            Interact();
+
+        if(attack_enabled)
+            AttackAndOther();
         GroundedCheck();
         GravityAnd();
         Menu();
@@ -123,6 +127,10 @@ public class PlayerController : MonoBehaviour
     float scanCooldown = 1f;
     float scanCounter = 0f;
     public bool look_enabled = true;
+    public bool interact_enabled = true;
+    public bool attack_enabled = true;
+
+
 
     void AttackAndOther()
     {

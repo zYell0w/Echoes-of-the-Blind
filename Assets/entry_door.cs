@@ -7,9 +7,13 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMissi
     [SerializeField] GameObject ChairObjectToShow;
     [SerializeField] GameObject BellObjectToShow;
 
+    float counter = 0;
+    float time = 150;
+    [SerializeField] Vector3 spawnPoint = new();
+
     public bool IsDone()
     {
-        if(belled || barricaded)
+        if (barricaded)
             return true;
         else
             return false;
@@ -17,16 +21,17 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMissi
 
     public void SetCompletion(float degree)
     {
-        
-        if(degree>0)
-           belled=true;
-        else if(degree>33)
-            barricaded=true;
-        else if(degree>66)
+        if(degree>66)
         {
             barricaded=true;
             belled = true;
         }
+        else if(degree>33)
+            barricaded=true;
+        
+        else if(degree>0)
+           belled=true;
+        
         else if(degree<=-66)
         {
             barricaded=false;
@@ -42,12 +47,18 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMissi
             belled=false;
             
         }
+        _update_door();
     }
 
     public void OnInteract(Player interactee)
     {
         if(interactee.Item?.GetComponent<door_bell>() != null)
         {
+            if(belled)
+            {
+                interactee.Item.Drop(interactee);
+                return;
+            }
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;            
             belled = true;
@@ -57,12 +68,18 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMissi
         }
         else if(interactee.Item?.GetComponent<blockade_chair>() != null)
         {
+            if(barricaded)
+            {
+                interactee.Item.Drop(interactee);
+                return;
+            }
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;            
             barricaded = true;
             ChairObjectToShow.SetActive(true);
             
         }
+        
     }
 
     public void ScanDetected(Vector3 scanLocation)
@@ -73,22 +90,39 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMissi
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ChairObjectToShow.SetActive(false);
-        BellObjectToShow.SetActive(false);
+        _update_door();
+    }
+
+    void _update_door()
+    {
+        BellObjectToShow.SetActive(belled);
+        ChairObjectToShow.SetActive(barricaded);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //böyle yapılabilir
-        if(belled)
-        {
-            
-        }
+       
         if(barricaded)
         {
-            
+            counter+=Time.deltaTime;
+            if(counter>=time)
+            {
+                counter=0;
+                barricaded=false;
+                _update_door();
+            }
         }
         
+    }
+
+    public Vector3 GetSpawnPointForEnemy()
+    {
+        if(belled)
+        {
+            //enes
+        }
+        return spawnPoint;
     }
 }

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-interface IInteractable
+public interface IInteractable
 {
     void OnHover()
     {

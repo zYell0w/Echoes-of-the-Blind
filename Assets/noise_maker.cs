@@ -42,7 +42,7 @@ public class noise_maker : MonoBehaviour
             AudioManager.instance.Play(audioString,transform.position);
             if(scanCounter>=scanDelay)
             {
-                scan.StartWave();
+                scan.StartWave(size:50,simSpeed:3);
                 scanCounter=0;
             }
             

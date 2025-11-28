@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class tv : MonoBehaviour , IMission , IInteractable
+public class tv : MonoBehaviour , IMission 
 {
     float counter = 0;
     float counterTime = 3.0f;
@@ -8,7 +8,15 @@ public class tv : MonoBehaviour , IMission , IInteractable
     float scanCounter = 0;
     float scanTimer = 2.0f;
 
+        [SerializeField] Vector3 spawnPoint = new();
+
     bool open = false;
+
+    public Vector3 GetSpawnPointForEnemy()
+    {
+        return spawnPoint;
+    }
+
     public bool IsDone()
     {
         return !open;
@@ -26,6 +34,11 @@ public class tv : MonoBehaviour , IMission , IInteractable
             }
         }
         
+    }
+
+    public void ScanDetected(Vector3 scanLocation)
+    {
+        throw new System.NotImplementedException();
     }
 
     public void SetCompletion(float degreeOutOf100)
@@ -56,4 +69,5 @@ public class tv : MonoBehaviour , IMission , IInteractable
             }
         }
     }
+    
 }

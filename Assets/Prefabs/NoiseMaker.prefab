@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2821898330629563345}
   m_Layer: 0
   m_Name: NoiseMaker
-  m_TagString: Untagged
+  m_TagString: NoiseMaker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::scan
   scanObject:
-  - {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
+  - {fileID: 8546356691610741914, guid: 3c29070eb5b6db1e4b5571309fb85405, type: 3}
   duration: 10
   size: 5
   simSpeed: 1

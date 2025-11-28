@@ -8,6 +8,9 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener , IMi
     const float min = 5;
     bool holding = false;
 
+    [SerializeField] Vector3 spawnPoint = new();
+
+
     GameObject perde ;
     Vector3 perdeScale;
     float startX;
@@ -37,7 +40,7 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener , IMi
         perde = transform.Find("perde").gameObject;
         startX = perde.transform.localScale.x;
         perdeScale = transform.localScale;
-        counter = 10;
+        counter = max/2;
     }
 
     // Update is called once per frame
@@ -77,5 +80,10 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener , IMi
             counter=Math.Min(counter,Math.Max(min,-1*degreeOutOf100 * max / 100));
             
         }
+    }
+
+    public Vector3 GetSpawnPointForEnemy()
+    {
+        return spawnPoint;
     }
 }

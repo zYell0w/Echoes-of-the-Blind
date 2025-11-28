@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Mission
   - Enemy
+  - NoiseMaker
+  - parlama
   layers:
   - Default
   - TransparentFX

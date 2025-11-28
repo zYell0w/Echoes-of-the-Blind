@@ -29,7 +29,11 @@ public class menu : MonoBehaviour
         Time.timeScale = 1;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         if(controller!=null)
+        {
             controller.look_enabled = true;
+            controller.attack_enabled = true;
+            controller.interact_enabled = true;
+        }
         
     }
 
@@ -37,7 +41,11 @@ public class menu : MonoBehaviour
         Time.timeScale = 0;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         if(controller!=null)
+        {
             controller.look_enabled = false;
+            controller.attack_enabled = false;
+            controller.interact_enabled = false;
+        }
     }
 
     public void OnExit()
