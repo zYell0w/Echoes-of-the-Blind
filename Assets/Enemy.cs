@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
             a.transform.position  = feet[0].transform.position;
             a.transform.rotation = feet[0].transform.rotation;
             if(!hitted)
-                AudioManager.instance.Play("EnemyStepSound");
+                AudioManager.instance.Play("EnemyStepSound", position: transform.position);
 
             step =!step;
         }
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
             a.transform.position  = feet[1].transform.position;
             a.transform.rotation = feet[1].transform.rotation;
             if(!hitted)
-                AudioManager.instance.Play("EnemyStepSound");
+                AudioManager.instance.Play("EnemyStepSound", position: transform.position);
             step =!step;
 
         }
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
     public void Hit()
     {
         StartCoroutine(hitCourontine());
-        AudioManager.instance.Play("MonsterHitRoar");
+        AudioManager.instance.Play("MonsterHitRoar",position:transform.position);
     }
 
     IEnumerator hitCourontine()
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
 
         if (hitted == false) {
 
-            AudioManager.instance.Play("EnemyBreathing");
+            AudioManager.instance.Play("EnemyBreathing",position: transform.position);
         
         }
         

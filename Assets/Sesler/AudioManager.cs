@@ -73,6 +73,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+
+
         // --- SENARYO 2: Üst Üste Binebilenler (Silah, Patlama) ---
         GameObject tempGO = new GameObject("TempAudio_" + name);
         if (position.HasValue) tempGO.transform.position = position.Value;
@@ -90,5 +92,46 @@ public class AudioManager : MonoBehaviour
 
         aSource.Play();
         Destroy(tempGO, selectedClip.length + 0.1f);
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Durdurulacak ses bulunamadý: " + name);
+            return;
+        }
+
+        // Sadece kendi Source'u olan (Loop/PreventOverlap) sesleri durdurabiliriz.
+        // Anlýk efektler (Silah gibi) zaten bitince yok oluyor.
+        if (s.source != null)
+        {
+            s.source.Stop();
+        }
+    }
+    public void StopWithFade(string name, float duration = 1f)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s != null && s.source != null && s.source.isPlaying)
+        {
+            StartCoroutine(FadeOutCoroutine(s, duration));
+        }
+    }
+
+    private System.Collections.IEnumerator FadeOutCoroutine(Sound s, float duration)
+    {
+        float startVolume = s.source.volume;
+
+        while (s.source.volume > 0)
+        {
+            // Sesi yavaþ yavaþ kýs
+            s.source.volume -= startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+
+        s.source.Stop();
+        s.source.volume = startVolume; // Bir sonraki sefer için sesi eski haline getir
     }
 }
