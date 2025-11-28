@@ -27,11 +27,12 @@ public class noise_maker : MonoBehaviour
     {
         if(counter>=time)
         {
+            counter=0;
             var rand = Random.Range(0,100);
-            if(chanceOutOf100>=rand)
+            if(rand<=chanceOutOf100)
             {
                 makingNoise=true;
-                counter=0;
+                
             }
         }
         if(makingNoise && noisecounter<=noiseTime)

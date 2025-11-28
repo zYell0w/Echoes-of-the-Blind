@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5a1bcefa5b850868933ff78d958225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::noise_maker
+  scanDelay: 1
   time: 3
   chanceOutOf100: 5
   noiseTime: 100
@@ -61,7 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::scan
-  scanObject: {fileID: 0}
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
   duration: 10
   size: 5
   simSpeed: 1
