@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class broken_window : MonoBehaviour , Iscanlistener , IInteractable , IMission
+public class broken_window : MonoBehaviour , IMission
 {
     [SerializeField] private int woodCount = 0;
     [SerializeField] List<GameObject> woodObjectsToShow = new();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMission
+public class entry_door : MonoBehaviour , IMission
 {
     [SerializeField] bool belled = false;
     [SerializeField] bool barricaded = false;

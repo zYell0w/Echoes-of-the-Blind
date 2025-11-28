@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class normal_window : MonoBehaviour , IInteractable , Iscanlistener , IMission
+public class normal_window : MonoBehaviour , IMission
 {
     [SerializeField] float counter;
     const float max = 50;

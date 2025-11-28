@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.UI;
 [RequireComponent(typeof(scan))]
 
-public class Gun : MonoBehaviour, IInteractable , IEquipable
+public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
 {
     private int ammo = 6;
 
@@ -133,7 +133,10 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable
         yield return null;
     }
 
-
+    public void ScanDetected(Vector3 scanLocation)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 
