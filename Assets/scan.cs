@@ -6,7 +6,7 @@ public class scan : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    [SerializeField] GameObject scanObject;
+    [SerializeField] List<GameObject> scanObject = new();
 
 
     [SerializeField] public float duration = 10;
@@ -29,13 +29,13 @@ public class scan : MonoBehaviour
     public void StartWave(float? duration = null,
     float? size = null,
     float? simSpeed = null,
-    Vector3? position = null)
+    Vector3? position = null,int waveIndex = 0)
     {
         GameObject terrainscanner;
         if (position != null)
-            terrainscanner = Instantiate(scanObject, (Vector3)position, quaternion.identity) as GameObject;
+            terrainscanner = Instantiate(scanObject[waveIndex], (Vector3)position, quaternion.identity) as GameObject;
         else
-            terrainscanner = Instantiate(scanObject, transform.position, quaternion.identity) as GameObject;
+            terrainscanner = Instantiate(scanObject[waveIndex], transform.position, quaternion.identity) as GameObject;
 
         ParticleSystem psys = terrainscanner.GetComponentInChildren<ParticleSystem>();
 

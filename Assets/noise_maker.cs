@@ -1,49 +1,56 @@
 using UnityEngine;
 
-public class noise_maker : MonoBehaviour , IMission , IInteractable
+public class noise_maker : MonoBehaviour 
 {
     //TODO ses
     bool makingNoise = false;
-    float interactCounter = 0f;
-    float interactTime = 3.0f;
-    public bool IsDone()
-    {
-        return !makingNoise;
-    }
+    float counter = 0f;
+    float scanCounter = 0;
+    [SerializeField] float scanDelay = 1.0f;
+    float noisecounter=0f;
+    scan scan;
 
-    public void OnInteract(Player interactee)
-    {
-        if(makingNoise)
-        {
-             interactCounter+=Time.deltaTime;
-            if(interactCounter>=interactTime)
-            {
-                makingNoise = false;
-                interactCounter=0f;
-            }
-        }
-        
-       
-    }
-
-    public void SetCompletion(float degreeOutOf100)
-    {
-        throw new System.NotImplementedException();
-    }
+    [SerializeField] float time = 3.0f;
+    [SerializeField] float chanceOutOf100 = 5.0f;
+    [SerializeField] float noiseTime = 100f;
+    [SerializeField] string audioString;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField]
     void Start()
     {
-        
+        scan = GetComponent<scan>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(makingNoise)
+        if(counter>=time)
         {
-            //TODO
+            var rand = Random.Range(0,100);
+            if(chanceOutOf100>=rand)
+            {
+                makingNoise=true;
+                counter=0;
+            }
+        }
+        if(makingNoise && noisecounter<=noiseTime)
+        {
+            noisecounter+=Time.deltaTime;
+            scanCounter+= Time.deltaTime;
+            AudioManager.instance.Play(audioString,transform.position);
+            if(scanCounter>=scanDelay)
+            {
+                scan.StartWave();
+            }
+            
+        }
+        else
+        {
+            noisecounter=0;
+            makingNoise=false;
+            counter+=Time.deltaTime;
+
         }
     }
 }
