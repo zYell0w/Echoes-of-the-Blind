@@ -17,7 +17,7 @@ public class Player : MonoBehaviour , Iscanlistener
     public void ScanDetected(Vector3 scanLocation)
     {
         
-        GetComponent<scan>().StartWave();
+        GetComponent<scan>().StartWave(waveIndex:1);
         AudioManager.instance.Play("EnemyNearSound");
     }
 }   

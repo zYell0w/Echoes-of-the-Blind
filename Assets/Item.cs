@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
-    private bool _dropped = false;
+    private int _dropped = 0;
     [SerializeField] scan scan;
     public void Drop(Player interactee)
     {
-        _dropped = true;
+        _dropped = 3;
         Debug.Log("Interacted");
         interactee.Item = null;
         foreach(Collider c in  GetComponents<Collider>())
@@ -51,12 +51,12 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
 
     void OnCollisionEnter(Collision collision)
     {
-        if(_dropped && scan!=null)
+        if(_dropped>0 && scan!=null)
         {
             scan.StartWave(position:collision.GetContact(0).point,size:3);
             AudioManager.instance.Play("itemDropSound");
         }
-        _dropped=false;
+        _dropped--;
     }
 
 
