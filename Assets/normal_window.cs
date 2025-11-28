@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
+public class normal_window : MonoBehaviour , IInteractable , Iscanlistener , IMission
 {
     [SerializeField] float counter;
     const float max = 50;
@@ -13,8 +14,13 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
     public void OnInteract(Player interactee)
     {
         holding = true;
-        if(counter<max)
-            counter+=Time.deltaTime;
+        if (counter < max)
+        {
+            counter += Time.deltaTime;
+            AudioManager.instance.Play("CurtainClosingSound");
+        }
+
+            
         
     }
 
@@ -31,7 +37,7 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
         perde = transform.Find("perde").gameObject;
         startX = perde.transform.localScale.x;
         perdeScale = transform.localScale;
-        counter = max;
+        counter = 10;
     }
 
     // Update is called once per frame
@@ -50,5 +56,26 @@ public class normal_window : MonoBehaviour , IInteractable , Iscanlistener
         perde.transform.localScale = perdeScale;       
         //değer belli bir şeyden yüksekse ya da azsa da buraya yapılabilir
         
+    }
+
+    public bool IsDone()
+    {
+        if(counter<min+1)
+            return false;
+        else
+            return true;
+    }
+
+    public void SetCompletion(float degreeOutOf100)
+    {
+        if(degreeOutOf100>0)
+        {
+            counter=Math.Max(min,degreeOutOf100 * max / 100);
+        }
+        else
+        {
+            counter=Math.Min(counter,Math.Max(min,-1*degreeOutOf100 * max / 100));
+            
+        }
     }
 }

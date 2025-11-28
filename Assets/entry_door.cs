@@ -1,11 +1,48 @@
 using UnityEngine;
 
-public class entry_door : MonoBehaviour , IInteractable , Iscanlistener
+public class entry_door : MonoBehaviour , IInteractable , Iscanlistener , IMission
 {
     [SerializeField] bool belled = false;
     [SerializeField] bool barricaded = false;
     [SerializeField] GameObject ChairObjectToShow;
     [SerializeField] GameObject BellObjectToShow;
+
+    public bool IsDone()
+    {
+        if(belled || barricaded)
+            return true;
+        else
+            return false;
+    }
+
+    public void SetCompletion(float degree)
+    {
+        
+        if(degree>0)
+           belled=true;
+        else if(degree>33)
+            barricaded=true;
+        else if(degree>66)
+        {
+            barricaded=true;
+            belled = true;
+        }
+        else if(degree<=-66)
+        {
+            barricaded=false;
+            belled = false;
+        }
+        else if(degree<=-33)
+        {
+            barricaded=false;
+            
+        }
+        else if(degree<=0)
+        {
+            belled=false;
+            
+        }
+    }
 
     public void OnInteract(Player interactee)
     {
@@ -37,6 +74,7 @@ public class entry_door : MonoBehaviour , IInteractable , Iscanlistener
     void Start()
     {
         ChairObjectToShow.SetActive(false);
+        BellObjectToShow.SetActive(false);
     }
 
     // Update is called once per frame

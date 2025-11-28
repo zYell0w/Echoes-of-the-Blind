@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1588882354362248877}
   m_Layer: 6
   m_Name: Entry door
-  m_TagString: Untagged
+  m_TagString: Mission
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2e6cde8149d542349b782a5115614c93, type: 3}
       propertyPath: m_Name
-      value: bell
+      value: bell_mesh
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2e6cde8149d542349b782a5115614c93, type: 3}
       propertyPath: m_IsActive

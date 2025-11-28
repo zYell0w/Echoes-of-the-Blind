@@ -4,10 +4,13 @@ using UnityEngine.InputSystem;
 using Unity.Multiplayer.Center.Common.Analytics;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
+using System;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private CharacterInput _input;
+    
     private CharacterController _controller;
     private GameObject _mainCamera;
 
@@ -46,6 +49,8 @@ public class PlayerController : MonoBehaviour
     private float _terminalVelocity = 53.0f;
     private float Gravity = -15f;
 
+    [SerializeField] private GameObject _menu;
+
     float stepCounter = 0;
 
     Player _player;
@@ -81,13 +86,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Look();
+        if(look_enabled)
+            Look();
         Move();
         Interact();
         AttackAndOther();
         GroundedCheck();
         GravityAnd();
+        Menu();
     }
+
+    private void Menu()
+    {
+        if(_input.menu)
+        {
+            _menu.SetActive(!_menu.activeSelf);
+            _input.menu=false;
+        }
+    }
+
     void GravityAnd()
     {
         if (Grounded)
@@ -103,8 +120,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float scanCooldown = 0.5f;
+    float scanCooldown = 1f;
     float scanCounter = 0f;
+    public bool look_enabled = true;
+
     void AttackAndOther()
     {
         scanCounter+=Time.deltaTime;
@@ -113,6 +132,7 @@ public class PlayerController : MonoBehaviour
             //var a = _canvas.transform.Find("clap").gameObject;
             _scanner.StartWave();
             StartCoroutine(ShowImage(clap));
+            AudioManager.instance.Play("FingerSnapSound");
             scanCounter=0;
         }
 
@@ -272,11 +292,13 @@ public class PlayerController : MonoBehaviour
         if (currentHorizontalSpeed > WalkSpeed + speedOffset)
         {
             stepCounter += Time.deltaTime;
-            if (stepCounter >= 0.3f)
+            if (stepCounter >= 0.5f)
             {
                 //GetComponent<scan>().StartWave(duration: GetComponent<scan>().duration / 3, size: GetComponent<scan>().size / 3);
                 Vector3 wavePos = transform.position + targetDirection.normalized * 1.5f;
+                AudioManager.instance.Play("Walking");
                 _scanner.StartWave(duration: 3f, size: 5f, simSpeed: 4, position: wavePos);
+                
                 stepCounter = 0f;
             }
         }

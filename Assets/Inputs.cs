@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ namespace Inputs
         public float interact;
         public float scan;
         public float drop;
+        public bool menu;
+
 
 
         public bool cursorLocked = true;
@@ -51,6 +54,15 @@ namespace Inputs
             DropInput(value.Get<float>());
         }
 
+        public void OnMenu(InputValue value)
+        {
+            MenuInput(value.isPressed);
+        }
+
+        private void MenuInput(bool isPressed)
+        {
+            menu = isPressed;
+        }
 
         public void MoveInput(Vector2 newMoveDir)
         {

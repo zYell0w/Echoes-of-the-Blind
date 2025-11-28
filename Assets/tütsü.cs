@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 [RequireComponent(typeof(scan))]
-public class tütsü : MonoBehaviour, IInteractable
+public class tütsü : MonoBehaviour, IInteractable ,IMission
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -41,11 +41,11 @@ public class tütsü : MonoBehaviour, IInteractable
         burn();
     }
 
-    void burn()
+    async void burn()
     {
         if (stillBurning == null)
         {
-
+            AudioManager.instance.Play("tütsüZippoSound");
             stillBurning = StartCoroutine(BurningCoroutine());
 
         }
@@ -59,6 +59,7 @@ public class tütsü : MonoBehaviour, IInteractable
 
     IEnumerator BurningCoroutine()
     {
+        yield return new WaitForSeconds(1f);
         float zaman = 0f;
         tütsüCounter++;
         
@@ -76,7 +77,25 @@ public class tütsü : MonoBehaviour, IInteractable
         stillBurning = null; 
     }
 
+    public bool IsDone()
+    {
+        if(stillBurning!=null)
+            return true;
+        else
+            return false;
+    }
 
+    public void SetCompletion(float degreeOutOf100)
+    {
+        if(degreeOutOf100<=0)
+        {
+            stillBurning=null;
+        }
+        else
+        {
+            burn();
+        }
+    }
 }
 
 
