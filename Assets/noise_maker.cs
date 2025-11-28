@@ -42,6 +42,7 @@ public class noise_maker : MonoBehaviour
             if(scanCounter>=scanDelay)
             {
                 scan.StartWave();
+                scanCounter=0;
             }
             
         }
