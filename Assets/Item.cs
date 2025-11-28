@@ -54,6 +54,7 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable{
         if(_dropped && scan!=null)
         {
             scan.StartWave(position:collision.GetContact(0).point,size:3);
+            AudioManager.instance.Play("itemDropSound");
         }
         _dropped=false;
     }
