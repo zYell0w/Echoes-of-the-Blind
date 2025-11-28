@@ -38,7 +38,7 @@ public class tv : MonoBehaviour , IMission
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 
     public void SetCompletion(float degreeOutOf100)

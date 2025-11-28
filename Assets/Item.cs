@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlistener{
     private int _dropped = 0;
     [SerializeField] scan scan;
+
     public void Drop(Player interactee)
     {
         _dropped = 3;
@@ -68,8 +69,6 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlist
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        
-        Debug.LogError("Scan Detected at location: " + scanLocation);
-    
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 }

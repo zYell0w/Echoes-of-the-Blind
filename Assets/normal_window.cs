@@ -31,7 +31,7 @@ public class normal_window : MonoBehaviour , IMission
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

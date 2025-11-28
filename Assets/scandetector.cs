@@ -9,7 +9,7 @@ public class scandetector : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
     }
-
+    
     void OnParticleTrigger()
     {
         // Get particles that entered a trigger this frame
@@ -25,19 +25,35 @@ public class scandetector : MonoBehaviour
             int colliderCount = colliderData.GetColliderCount(i);
             for (int j = 0; j < colliderCount; j++)
             {
+                
                 // Get the specific collider for this particle
                 Collider triggeredCollider = (Collider)colliderData.GetCollider(i, j);
-
                 // Now you can use the collider's GameObject
                 GameObject triggeredObject = triggeredCollider.gameObject;
                 triggeredObject.GetComponent<Iscanlistener>().ScanDetected(ps.transform.position);
+                var life = p.startLifetime - p.remainingLifetime;
+                var a =ps.main;
+                ps.trigger.RemoveCollider(triggeredCollider);
+                var size=p.GetCurrentSize(ps);
+                var v = a.emitterVelocity;
+                var c = p.GetCurrentColor(ps);
+                p.remainingLifetime = 0;
+                ps.Emit(emitParams: new ParticleSystem.EmitParams
+                {
+                    position = ps.transform.position,
+                    velocity = v,
+                    startLifetime = life,
+                    startSize = size,
+                    startColor = c,
+                }, count: 1);
+                
                 //Debug.LogError("yo");
                 
             }
-            enterParticles[i] = p; // Save the modified particle
+            //enterParticles[i] = p; // Save the modified particle
         }
 
         // Apply the modified particles back to the system
-        ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
+        //ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
     }
 }

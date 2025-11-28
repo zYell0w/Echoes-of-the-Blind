@@ -126,6 +126,6 @@ public class broken_window : MonoBehaviour , IMission
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        throw new NotImplementedException();
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 }

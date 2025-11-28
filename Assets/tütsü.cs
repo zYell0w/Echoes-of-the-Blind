@@ -104,7 +104,7 @@ public class tütsü : MonoBehaviour ,IMission
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 }
 

@@ -28,21 +28,23 @@ public class mission_controller : MonoBehaviour
         {
             missions.Add(mission);
         }
-        /*objs = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None).ToList<GameObject>();
+        objs = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None).ToList<GameObject>();
 
         foreach(GameObject obj in objs)
         {
             if(obj.GetComponent<Iscanlistener>()!=null)
             {
-                yers.Add(obj);
                 player.GetComponent<scan>().colliders.Add(obj.GetComponent<Collider>());
 
             }
+            player.GetComponent<scan>().colliders.Remove(player.GetComponent<Collider>());
+           
+            
         }
     
         
         objs.Clear();
-*/
+
         foreach(GameObject noise in GameObject.FindGameObjectsWithTag("NoiseMaker"))
                 EnemyAttractingScanners.Add(noise.GetComponent<scan>());
             

@@ -135,7 +135,7 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
 
     public void ScanDetected(Vector3 scanLocation)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("Scan Detected at location: " + transform.position);
     }
 }
 
