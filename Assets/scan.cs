@@ -17,7 +17,10 @@ public class scan : MonoBehaviour
 
     void Start()
     {
-
+        foreach(GameObject obj in scanObject)
+        {
+            obj.GetComponentInChildren<scandetector>().scan = this;
+        }
     }
 
     // Update is called once per frame
@@ -29,7 +32,7 @@ public class scan : MonoBehaviour
     public void StartWave(float? duration = null,
     float? size = null,
     float? simSpeed = null,
-    Vector3? position = null,int waveIndex = 0)
+    Vector3? position = null,int waveIndex = 0,bool TriggersEnabled = true)
     {
         GameObject terrainscanner;
         if (position != null)
@@ -42,10 +45,14 @@ public class scan : MonoBehaviour
         if (psys != null)
         {
             var a = psys.main;
-            colliders.ForEach(delegate(Collider col)
+            if(TriggersEnabled)
             {
-                psys.trigger.AddCollider(col);
-             });
+                colliders.ForEach(delegate(Collider col)
+                {
+                    psys.trigger.AddCollider(col);
+                });
+            }
+            
 
             if (duration != null)
                 a.startLifetime = (float)duration;

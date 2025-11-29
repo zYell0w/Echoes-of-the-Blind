@@ -82,9 +82,13 @@ public class entry_door : MonoBehaviour , IMission
         
     }
 
-    public void ScanDetected(Vector3 scanLocation)
+        public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {
-        Debug.LogError("Scan Detected at location: " + transform.position);
+        if(scan!=null)
+        {
+          
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

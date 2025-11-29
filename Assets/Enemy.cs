@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
         
     }
 
-    void Step()
+    void Step(bool withWaves = true)
     {
         GameObject a;
         if(step)
@@ -62,7 +62,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
         }
         a.SetActive(true);
         Destroy(a,1.0f);
-        scan.StartWave(position:a.transform.position,size:8f);
+        if(withWaves)
+            scan.StartWave(position:a.transform.position,size:8f);
         stepCounter = 0;
         
 
@@ -78,13 +79,15 @@ public class Enemy : MonoBehaviour , Iscanlistener
     {
         float counter = 0;
         hitted = true;
+        Step();
         while(counter<=5)
         {
             counter+=Time.deltaTime;
             target = transform.position;
-            Step();
+            Step(false);
             yield return null;
         }
+        Step();
         hitted = false;
     }
 
@@ -111,9 +114,12 @@ public class Enemy : MonoBehaviour , Iscanlistener
         }
     }
 
-    public void ScanDetected(Vector3 scanLocation)
+    
+
+    public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {
-        target = scanLocation;
+        if(scanLocation!=null)
+            target = (Vector3)scanLocation;
         if(stepCounter>=stepTime/3)
             Step();
     }

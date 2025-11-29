@@ -133,9 +133,13 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
         yield return null;
     }
 
-    public void ScanDetected(Vector3 scanLocation)
+        public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {
-        Debug.LogError("Scan Detected at location: " + transform.position);
+        if(scan!=null)
+        {
+          
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+        }
     }
 }
 

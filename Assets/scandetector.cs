@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class scandetector : MonoBehaviour
 {
     ParticleSystem ps;
+    public scan scan = null;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class scandetector : MonoBehaviour
                 Collider triggeredCollider = (Collider)colliderData.GetCollider(i, j);
                 // Now you can use the collider's GameObject
                 GameObject triggeredObject = triggeredCollider.gameObject;
-                triggeredObject.GetComponent<Iscanlistener>().ScanDetected(ps.transform.position);
+                triggeredObject.GetComponent<Iscanlistener>().ScanDetected(ps.transform.position,scan);
                 var life = p.startLifetime - p.remainingLifetime;
                 var a =ps.main;
                 ps.trigger.RemoveCollider(triggeredCollider);

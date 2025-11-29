@@ -102,9 +102,13 @@ public class tütsü : MonoBehaviour ,IMission
         return spawnPoint;
     }
 
-    public void ScanDetected(Vector3 scanLocation)
+        public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {
-        Debug.LogError("Scan Detected at location: " + transform.position);
+        if(scan!=null)
+        {
+          
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+        }
     }
 }
 

@@ -15,12 +15,7 @@ public class Player : MonoBehaviour , Iscanlistener
         AudioManager.instance.Play("DeathSound");
     }
 
-    public void ScanDetected(Vector3 scanLocation)
-    {
-        
-        GetComponent<scan>().StartWave(waveIndex:1);
-        AudioManager.instance.Play("EnemyNearSound");
-    }
+   
 
     void OnCollisionEnter(Collision collision)
     {
@@ -29,5 +24,11 @@ public class Player : MonoBehaviour , Iscanlistener
             Die();
             Debug.Log("bi bok olmuyo");
         }
+    }
+
+    public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
+    {
+        GetComponent<scan>().StartWave(waveIndex:1);
+        AudioManager.instance.Play("EnemyNearSound");    
     }
 }   

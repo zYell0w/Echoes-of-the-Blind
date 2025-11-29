@@ -42,9 +42,13 @@ public class tv : MonoBehaviour , IMission
         
     }
 
-    public void ScanDetected(Vector3 scanLocation)
+    public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {
-        Debug.LogError("Scan Detected at location: " + transform.position);
+        if(scan!=null)
+        {
+          
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+        }
     }
 
     public void SetCompletion(float degreeOutOf100)
