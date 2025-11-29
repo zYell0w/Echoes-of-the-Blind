@@ -10385,6 +10385,20 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 50
     source: {fileID: 0}
+  - name: DeathSound
+    clips:
+    - {fileID: 8300000, guid: 71af5db976069024cb85b52f7b15f8a2, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 50
+    source: {fileID: 0}
 --- !u!4 &510807829
 Transform:
   m_ObjectHideFlags: 0
@@ -47438,6 +47452,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8349395485374995093, guid: 95382a73b1aaa1c1ab310e5dbc50a171, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016943714846975659, guid: 95382a73b1aaa1c1ab310e5dbc50a171, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
