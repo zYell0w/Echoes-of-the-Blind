@@ -317,5 +317,22 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    // CharacterController bir şeye çarptığında bu çalışır
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+        // "Enemy" tag'ine sahip bir şeye mi çarptık?
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("TEMAS VAR.");
+
+            // Eğer Player scriptin varsa ve içinde Die fonksiyonu varsa:
+            if (_player != null)
+            {
+                _player.Die(); // Buradaki fonksiyon ismin neyse onu yaz
+            }
+        }
+    }
+
 
 }

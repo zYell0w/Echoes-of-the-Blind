@@ -12,6 +12,7 @@ public class Player : MonoBehaviour , Iscanlistener
     public void Die()
     {
         //bruh
+        AudioManager.instance.Play("DeathSound");
     }
 
     public void ScanDetected(Vector3 scanLocation)
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour , Iscanlistener
     {
         if(collision.gameObject.GetComponent<Enemy>() != null)
         {
-            //finito  la partita
+            Die();
+            Debug.Log("bi bok olmuyo");
         }
     }
 }   
