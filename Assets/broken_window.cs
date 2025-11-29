@@ -47,9 +47,10 @@ public class broken_window : MonoBehaviour , IMission
             Destroy(interactee.Item.gameObject);
             interactee.Item = null;
             woodCount++;
+            AudioManager.instance.Play("BrokenWindowPuttingWood");
             _update_wood();
 
-            //başarılı ses efekti
+            
         }
     }
 
@@ -114,6 +115,7 @@ public class broken_window : MonoBehaviour , IMission
             {
                 counter=0;
                 woodCount--;
+                AudioManager.instance.Play("WindowWoodBrokeSound", position: transform.position);
                 _update_wood();
             }
         }
