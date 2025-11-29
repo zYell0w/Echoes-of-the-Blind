@@ -16,11 +16,23 @@ public class AudioManager : MonoBehaviour
 
         foreach (Sound s in sounds)
         {
-            // Müzikler (Loop) VE Çakýþmasý Ýstenmeyen Sesler (PreventOverlap) için
-            // en baþtan bir hoparlör oluþturup saklýyoruz.
+            // Müzikler (Loop) VE Çakýþmasý Ýstenmeyen Sesler için
             if (s.loop || s.preventOverlap)
             {
-                s.source = gameObject.AddComponent<AudioSource>();
+                // HATALI OLAN ESKÝ KOD:
+                // s.source = gameObject.AddComponent<AudioSource>(); 
+
+                // --- DÜZELTÝLMÝÞ YENÝ KOD ---
+                // 1. Yeni, boþ bir GameObject oluþtur
+                GameObject soundObj = new GameObject("SoundSource_" + s.name);
+
+                // 2. Bunu AudioManager'ýn evladý (Child) yap ki ortalýk daðýlmasýn
+                soundObj.transform.SetParent(this.transform);
+
+                // 3. AudioSource'u BU YENÝ OBJEYE ekle
+                s.source = soundObj.AddComponent<AudioSource>();
+
+                // 4. Ayarlarý yükle
                 s.source.clip = s.clips.Length > 0 ? s.clips[0] : null;
                 s.source.outputAudioMixerGroup = s.mixerGroup;
                 s.source.loop = s.loop;

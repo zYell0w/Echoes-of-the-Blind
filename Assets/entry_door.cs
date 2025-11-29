@@ -111,6 +111,7 @@ public class entry_door : MonoBehaviour , IMission
             {
                 counter=0;
                 barricaded=false;
+                AudioManager.instance.Play("ChairBrokeSound", position: transform.position);
                 _update_door();
             }
         }
@@ -121,7 +122,8 @@ public class entry_door : MonoBehaviour , IMission
     {
         if(belled)
         {
-            //enes
+            AudioManager.instance.Play("BellDoorSound", position: transform.position);
+
         }
         return spawnPoint;
     }
