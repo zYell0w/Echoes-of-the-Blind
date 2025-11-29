@@ -68,41 +68,45 @@ public class broken_window : MonoBehaviour , IMission
 
     private void _update_wood()
     {
-        List<GameObject> availableWoods = new();
-        List<GameObject> unavailableWoods = new();
+        // 1. ÖNCE SAHNEDEKİ MEVCUT DURUMU TESPİT ET
+        List<GameObject> activeList = new List<GameObject>();   // Şu an AÇIK olanlar
+        List<GameObject> inactiveList = new List<GameObject>(); // Şu an KAPALI olanlar
 
-            foreach(GameObject wood in woodObjectsToShow)
-            {
-                if(wood.activeSelf == false)
-                    availableWoods.Add(wood);   
-                else
-                    unavailableWoods.Add(wood);
-            }
-        int a = woodObjectsToShow.Count - availableWoods.Count;
-        bool changeDone = false;
-        if(a<0)
+        foreach (GameObject wood in woodObjectsToShow)
         {
-            for(int i =0;i<-a;i++)
-            {
-                int random = UnityEngine.Random.Range(0,unavailableWoods.Count);
-                unavailableWoods[random].SetActive(false);
-                unavailableWoods.RemoveAt(random);
-                changeDone = true;
-            }
+            if (wood.activeSelf)
+                activeList.Add(wood);
+            else
+                inactiveList.Add(wood);
         }
-        else
+
+     
+        // 2. EĞER AÇIK SAYISI HEDEFTEN AZSA -> EKLE (WHILE DÖNGÜSÜ)
+        while(activeList.Count < woodCount && inactiveList.Count > 0)
         {
-            for(int i =0;i<woodCount-a;i++)
-            {
-                int random = UnityEngine.Random.Range(0,availableWoods.Count);
-                availableWoods[random].SetActive(true);
-                availableWoods.RemoveAt(random);
-                changeDone = true;
-            }
+            int randomIndex = UnityEngine.Random.Range(0, inactiveList.Count);
+            GameObject woodToOpen = inactiveList[randomIndex];
+
+            woodToOpen.SetActive(true); // Aç
+
+            // Listeleri güncelle ki döngü doğru devam etsin
+            activeList.Add(woodToOpen);
+            inactiveList.RemoveAt(randomIndex);
         }
-        if(changeDone)
-            time = UnityEngine.Random.Range(min, max);
-            
+
+        // 3. EĞER AÇIK SAYISI HEDEFTEN FAZLAYSA -> KIR/KAPAT (WHILE DÖNGÜSÜ)
+        while(activeList.Count > woodCount && activeList.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, activeList.Count);
+            GameObject woodToClose = activeList[randomIndex];
+
+            woodToClose.SetActive(false); // Kapat
+
+            // Listeleri güncelle
+            inactiveList.Add(woodToClose);
+            activeList.RemoveAt(randomIndex);
+        }
+        
     }
 
     // Update is called once per frame
@@ -117,6 +121,7 @@ public class broken_window : MonoBehaviour , IMission
                 woodCount--;
                 AudioManager.instance.Play("WindowWoodBrokeSound", position: transform.position);
                 _update_wood();
+                time = UnityEngine.Random.Range(min, max);
             }
         }
     }
