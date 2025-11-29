@@ -341,7 +341,7 @@ RectTransform:
   m_Father: {fileID: 1070733048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1493,7 +1493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &845038484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: 1920x1080
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Option B
@@ -3567,7 +3567,7 @@ RectTransform:
   m_Father: {fileID: 1661213123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3805,16 +3805,16 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1491070129}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 1.1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.777
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1676170776}
         m_TargetAssemblyTypeName: settings_menu, Assembly-CSharp
         m_MethodName: OnVolumeSlider
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3880,7 +3880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option A
+  m_text: 1920x1080
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8f969a608c6df0e596d6527c18fc62c, type: 2}
   m_sharedMaterial: {fileID: -1411471266099614099, guid: f8f969a608c6df0e596d6527c18fc62c, type: 2}
@@ -4092,7 +4092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1676170773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4167,6 +4167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   entryMenu: {fileID: 1448617099}
+  fullscreenToggle: {fileID: 1909708084}
+  volumeSlider: {fileID: 1531320069}
+  audioMixer: {fileID: 24100000, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+  debugText: {fileID: 0}
 --- !u!1 &1717999873
 GameObject:
   m_ObjectHideFlags: 0
