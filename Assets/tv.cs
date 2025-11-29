@@ -3,8 +3,8 @@ using UnityEngine;
 public class tv : MonoBehaviour , IMission 
 {
     float randomCounter = 0f;
-    float chanceOutOf100 = 50f;
-    float time = 10f;
+    float chanceOutOf100 = 10f;
+    float time = 40f;
     float counter = 0;
     float counterTime = 3.0f;
     private scan scan;
