@@ -10,10 +10,8 @@ public class mission_controller : MonoBehaviour
 
     [SerializeField] public Enemy enemyPrefab;
 
-    float daycounter = 0f;
-    float daytime = 120f;
     float missionCheckCounter = 0f;
-    float missionCheckTime = 10.0f;
+    float missionCheckTime = 30f;
     GameObject player;
 
     [SerializeField] List<GameObject> objs = new();
@@ -88,11 +86,6 @@ public class mission_controller : MonoBehaviour
                 SpawnEnemy(spawnPoint);
             }
         }
-        daycounter+=Time.deltaTime;
-        if(daycounter>=daytime)
-        {
-            //finito la missioni
-            
-        }
+        
     }
 }

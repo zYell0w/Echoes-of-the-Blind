@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
     [SerializeField] private float stepLength = 1.0f;
     private scan scan;
     private bool hitted = false;
-    NavMeshAgent agent; 
+    NavMeshAgent agent;
+    private float health = 100;
 
     [SerializeField] public Vector3 target;
 
@@ -62,8 +63,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
         }
         a.SetActive(true);
         Destroy(a,1.0f);
-        if(withWaves)
-            scan.StartWave(position:a.transform.position,size:8f);
+        
+        scan.StartWave(position:a.transform.position,size:8f,TriggersEnabled: withWaves);
         stepCounter = 0;
         
 
@@ -72,7 +73,9 @@ public class Enemy : MonoBehaviour , Iscanlistener
     public void Hit()
     {
         StartCoroutine(hitCourontine());
+        AudioManager.instance.Stop("MonsterHitRoar");
         AudioManager.instance.Play("MonsterHitRoar",position:transform.position);
+        health -= 25f;
     }
 
     IEnumerator hitCourontine()
@@ -106,7 +109,13 @@ public class Enemy : MonoBehaviour , Iscanlistener
             AudioManager.instance.Play("EnemyBreathing",position: transform.position);
         
         }
-        
+
+        if (health <= 0)
+        {
+            AudioManager.instance.Stop("MonsterHitRoar");
+            AudioManager.instance.Play("MonsterDeath", transform.position);
+            Enemy.Destroy(gameObject,0.5f);
+        }
 
         if(stepCounter >= stepTime)
         {
