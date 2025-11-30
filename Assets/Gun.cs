@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
 {
     private int ammo = 6;
-
+    public void Reload()
+    {
+        ammo=6;
+    }
     [SerializeField] GameObject gunHand;
     [SerializeField] Sprite[] GunImageSprite;
     private Image ShootImage;
