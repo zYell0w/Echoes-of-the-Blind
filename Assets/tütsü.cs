@@ -110,6 +110,22 @@ public class tütsü : MonoBehaviour ,IMission
             scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().Slow();
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().UnSlow();
+            
+        }
+    }
 }
 
 
