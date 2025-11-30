@@ -1375,7 +1375,7 @@ MonoBehaviour:
   finishScreen: {fileID: 664512554}
   winScreen: {fileID: 1983855371}
   loseScreen: {fileID: 1551452680}
-  nightTime: 10
+  nightTime: 100
   health: 100
   stamina: 100
 --- !u!1 &53252161 stripped
@@ -10316,7 +10316,7 @@ MonoBehaviour:
     volume: 1
     pitch: 0.9
     loop: 0
-    preventOverlap: 0
+    preventOverlap: 1
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 1
@@ -10388,7 +10388,7 @@ MonoBehaviour:
     volume: 1
     pitch: 0.9
     loop: 0
-    preventOverlap: 0
+    preventOverlap: 1
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 1
@@ -10551,6 +10551,20 @@ MonoBehaviour:
     volumeVariance: 0.1
     pitchVariance: 0.1
     spatialBlend: 0
+    minDistance: 1
+    maxDistance: 50
+    source: {fileID: 0}
+  - name: MonsterDeath
+    clips:
+    - {fileID: 8300000, guid: 6413989ee7477c34c82b236fd7718138, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.2
+    spatialBlend: 1
     minDistance: 1
     maxDistance: 50
     source: {fileID: 0}
@@ -16813,7 +16827,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 92c2e1f1f6f6b710b9810eea9ea09fb0, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2791c4ed46cf952499ecce0517e0aad1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &783234728 stripped
 GameObject:
@@ -43825,7 +43839,6 @@ GameObject:
   - component: {fileID: 1930591026}
   - component: {fileID: 1930591025}
   - component: {fileID: 1930591024}
-  - component: {fileID: 1930591023}
   m_Layer: 0
   m_Name: hali (2)
   m_TagString: Untagged
@@ -43833,27 +43846,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1930591023
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930591022}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1930591024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43919,7 +43911,7 @@ Transform:
   m_GameObject: {fileID: 1930591022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7431224, z: -0, w: 0.6691556}
-  m_LocalPosition: {x: -51.07, y: 13.878993, z: 0.42}
+  m_LocalPosition: {x: -51.07, y: 13.938, z: 0.42}
   m_LocalScale: {x: 5, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
