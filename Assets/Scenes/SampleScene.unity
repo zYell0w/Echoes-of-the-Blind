@@ -1375,7 +1375,7 @@ MonoBehaviour:
   finishScreen: {fileID: 664512554}
   winScreen: {fileID: 1983855371}
   loseScreen: {fileID: 1551452680}
-  nightTime: 300
+  nightTime: 600
   health: 100
   stamina: 100
 --- !u!1 &53252161 stripped
