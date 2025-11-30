@@ -7,6 +7,7 @@ public class AmmoBox : MonoBehaviour , IInteractable, Iscanlistener
         if(interactee.Weapon?.GetComponent<Gun>()!=null)
         {
             interactee.Weapon.GetComponent<Gun>().Reload();
+            AudioManager.instance.Play("AmmoSound");
         }
     }
 
