@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    /*
     // CharacterController bir şeye çarptığında bu çalışır
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -333,6 +333,21 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
+    public void OnTriggerEnter(Collider other)
+    {
+    
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("TEMAS VAR.");
 
+            // Eğer Player scriptin varsa ve içinde Die fonksiyonu varsa:
+            if (_player != null)
+            {
+                _player.Die(); // Buradaki fonksiyon ismin neyse onu yaz
+                //hüseyin mal aq
+            }
+        }
+    }
 
 }

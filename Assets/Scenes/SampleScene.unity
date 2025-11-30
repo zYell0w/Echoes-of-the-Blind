@@ -1375,7 +1375,7 @@ MonoBehaviour:
   finishScreen: {fileID: 664512554}
   winScreen: {fileID: 1983855371}
   loseScreen: {fileID: 1551452680}
-  nightTime: 300
+  nightTime: 600
   health: 100
   stamina: 100
 --- !u!1 &53252161 stripped
@@ -10565,6 +10565,20 @@ MonoBehaviour:
     volumeVariance: 0.1
     pitchVariance: 0.2
     spatialBlend: 1
+    minDistance: 1
+    maxDistance: 50
+    source: {fileID: 0}
+  - name: AmmoSound
+    clips:
+    - {fileID: 8300000, guid: 7fffe0258b8def24998a9e14ba7ec607, type: 3}
+    mixerGroup: {fileID: 2234083140651647836, guid: 56e16965debe37a4eb3d7fe77dcadf7d, type: 2}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    preventOverlap: 1
+    volumeVariance: 0.1
+    pitchVariance: 0.2
+    spatialBlend: 0
     minDistance: 1
     maxDistance: 50
     source: {fileID: 0}
