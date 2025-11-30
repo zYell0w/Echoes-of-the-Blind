@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
     bool step = false;
 
     [SerializeField] private float stepLength = 1.0f;
+
+    float baseSpeed = 2;
     private scan scan;
     private bool hitted = false;
     NavMeshAgent agent;
@@ -78,6 +80,15 @@ public class Enemy : MonoBehaviour , Iscanlistener
         health -= 25f;
     }
 
+     public void Slow()
+    {
+        agent.speed=baseSpeed/2;
+    }
+     public void UnSlow()
+    {
+        agent.speed=baseSpeed;
+    }
+
     IEnumerator hitCourontine()
     {
         float counter = 0;
@@ -121,6 +132,8 @@ public class Enemy : MonoBehaviour , Iscanlistener
         {
             Step();
         }
+
+        
     }
 
     

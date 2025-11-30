@@ -104,6 +104,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4f57c5b46146314d93d1a9f540b0fac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8681751355664921454}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4f57c5b46146314d93d1a9f540b0fac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5790790883534182264}
     - targetCorrespondingSourceObject: {fileID: 5791108852304072119, guid: a4f57c5b46146314d93d1a9f540b0fac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6429794853589801633}
@@ -170,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e5e48dd5b0ad54a80951595f261d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::t\xFCts\xFC"
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!64 &4016146511084635423
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -219,3 +223,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5790790883534182264
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619466080037902312}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 0.37, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
