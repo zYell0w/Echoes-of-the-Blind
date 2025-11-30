@@ -46,16 +46,6 @@ public class Player : MonoBehaviour , Iscanlistener
         
     }
 
-   
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.GetComponent<Enemy>() != null)
-        {
-            Die();
-            Debug.Log("bi bok olmuyo");
-        }
-    }
 
     public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
     {

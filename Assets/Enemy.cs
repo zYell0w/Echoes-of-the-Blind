@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour , Iscanlistener
         {
             AudioManager.instance.Stop("MonsterHitRoar");
             AudioManager.instance.Play("MonsterDeath", transform.position);
-            Enemy.Destroy(gameObject,3f);
+            Enemy.Destroy(gameObject,0.5f);
         }
 
         if(stepCounter >= stepTime)
