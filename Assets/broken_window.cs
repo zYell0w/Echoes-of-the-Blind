@@ -6,7 +6,7 @@ public class broken_window : MonoBehaviour , IMission
 {
     [SerializeField] private int woodCount = 0;
     [SerializeField] List<GameObject> woodObjectsToShow = new();
-
+    scan _scan;
     [SerializeField] Vector3 spawnPoint = new();
     
     float counter= 0;
@@ -58,7 +58,8 @@ public class broken_window : MonoBehaviour , IMission
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach(GameObject wood in woodObjectsToShow)
+        _scan = GetComponent<scan>();
+        foreach (GameObject wood in woodObjectsToShow)
         {
             wood.SetActive(false);
         }
@@ -135,8 +136,8 @@ public class broken_window : MonoBehaviour , IMission
     {
         if(scan!=null)
         {
-          
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false, waveIndex: 3);
         }
     }
 }

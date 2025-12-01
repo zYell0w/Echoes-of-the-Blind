@@ -87,7 +87,7 @@ public class entry_door : MonoBehaviour , IMission
         if(scan!=null)
         {
           
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false, waveIndex: 3);
         }
     }
 

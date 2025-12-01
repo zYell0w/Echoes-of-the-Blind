@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class AmmoBox : MonoBehaviour , IInteractable, Iscanlistener
 {
+    scan _scan;
+
+    public void Start()
+    {
+        _scan = GetComponent<scan>();
+    }
     public void OnInteract(Player interactee)
     {
         if(interactee.Weapon?.GetComponent<Gun>()!=null)
@@ -15,15 +21,11 @@ public class AmmoBox : MonoBehaviour , IInteractable, Iscanlistener
     {
         if (scan != null)
         {
+            scan = _scan;
             scan.StartWave(position: transform.position, size: 2, TriggersEnabled: false);
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

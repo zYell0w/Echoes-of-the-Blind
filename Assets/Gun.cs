@@ -17,7 +17,6 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
     private int currentFrame = 0;
     private bool isPlaying = false;
     private float frameDelay = 0.1f;
-
     private float cooldown = 1f;
     private float cooldownCounter = 0f;
 
@@ -140,8 +139,9 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
     {
         if(scan!=null)
         {
-          
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            scan = _scan;
+            
+            scan.StartWave(position: transform.position, size: 2, TriggersEnabled: false, waveIndex: 1);
         }
     }
 }

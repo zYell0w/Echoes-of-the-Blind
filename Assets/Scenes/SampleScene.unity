@@ -807,6 +807,7 @@ GameObject:
   - component: {fileID: 33855741}
   - component: {fileID: 33855745}
   - component: {fileID: 33855744}
+  - component: {fileID: 33855746}
   m_Layer: 6
   m_Name: step071 (4)
   m_TagString: Untagged
@@ -947,6 +948,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &33855746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33855739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &35808239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5949424800714603048, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -1355,6 +1374,8 @@ MonoBehaviour:
   scanObject:
   - {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
   - {fileID: 8546356691610741914, guid: 3c29070eb5b6db1e4b5571309fb85405, type: 3}
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  - {fileID: 8546356691610741914, guid: 45a84e26d975c464f9266ff0dd4e0635, type: 3}
   duration: 20
   size: 22.8
   simSpeed: 2
@@ -1608,6 +1629,7 @@ GameObject:
   - component: {fileID: 74671050}
   - component: {fileID: 74671054}
   - component: {fileID: 74671053}
+  - component: {fileID: 74671055}
   m_Layer: 6
   m_Name: step071 (6)
   m_TagString: Untagged
@@ -1748,6 +1770,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &74671055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74671048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &75817829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8308870470070913148, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -4168,11 +4208,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2529336470065973138, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
---- !u!1 &184940227 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1899124098547058768, guid: 7e7c9ddab1c39e445835d7867f5d8c35, type: 3}
-  m_PrefabInstance: {fileID: 1774058317936987908}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &184940228 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6016471165160908769, guid: 7e7c9ddab1c39e445835d7867f5d8c35, type: 3}
@@ -11833,6 +11868,7 @@ GameObject:
   - component: {fileID: 558424730}
   - component: {fileID: 558424734}
   - component: {fileID: 558424733}
+  - component: {fileID: 558424735}
   m_Layer: 6
   m_Name: step071 (1)
   m_TagString: Untagged
@@ -11973,6 +12009,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &558424735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558424728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &559681007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1671112195987866955, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -12203,6 +12257,7 @@ GameObject:
   - component: {fileID: 571925555}
   - component: {fileID: 571925559}
   - component: {fileID: 571925558}
+  - component: {fileID: 571925560}
   m_Layer: 6
   m_Name: step071 (7)
   m_TagString: Untagged
@@ -12343,6 +12398,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &571925560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571925553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &572288563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2562578108112061993, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -14690,6 +14763,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e3822badb6f080f42ab914364e716a17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16450,6 +16527,7 @@ GameObject:
   - component: {fileID: 774301065}
   - component: {fileID: 774301069}
   - component: {fileID: 774301068}
+  - component: {fileID: 774301070}
   m_Layer: 6
   m_Name: step071 (8)
   m_TagString: Untagged
@@ -16590,6 +16668,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &774301070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774301063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &774923821 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7462198691770935971, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -18688,6 +18784,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5288644308202375942, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
+--- !u!1 &880788913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 915749949085292551, guid: 1bd3a3b90ce610d4098cfc9ecb7cd578, type: 3}
+  m_PrefabInstance: {fileID: 1027214425198285686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &880788919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880788913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &881143882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -260658525726511004, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -19722,6 +19841,7 @@ GameObject:
   - component: {fileID: 945496779}
   - component: {fileID: 945496783}
   - component: {fileID: 945496782}
+  - component: {fileID: 945496784}
   m_Layer: 6
   m_Name: step071 (2)
   m_TagString: Untagged
@@ -19862,6 +19982,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &945496784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945496777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &946673254 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4256880930063795733, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -23008,7 +23146,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 447433969023978411, guid: be965dd1c947b83c8a295daf0c9edd92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1542081448}
   m_SourcePrefab: {fileID: 100100000, guid: be965dd1c947b83c8a295daf0c9edd92, type: 3}
 --- !u!1 &1115688889 stripped
 GameObject:
@@ -34320,7 +34461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93390beb66ab600f0b33db2fae91b495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::trap
-  scan: {fileID: 1364629848}
+  scan: {fileID: 0}
 --- !u!54 &1364629846
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36631,6 +36772,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8226074824280249851, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
+--- !u!1 &1542081444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 447433969023978411, guid: be965dd1c947b83c8a295daf0c9edd92, type: 3}
+  m_PrefabInstance: {fileID: 1115156590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542081448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542081444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 45a84e26d975c464f9266ff0dd4e0635, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &1542617783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8042922005760231982, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -41776,6 +41940,7 @@ GameObject:
   - component: {fileID: 1824134604}
   - component: {fileID: 1824134608}
   - component: {fileID: 1824134607}
+  - component: {fileID: 1824134609}
   m_Layer: 6
   m_Name: step071 (9)
   m_TagString: Untagged
@@ -41916,6 +42081,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1824134609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824134602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &1825499725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1026337696490699700, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -42065,6 +42248,7 @@ GameObject:
   - component: {fileID: 1837497195}
   - component: {fileID: 1837497199}
   - component: {fileID: 1837497198}
+  - component: {fileID: 1837497200}
   m_Layer: 6
   m_Name: step071 (3)
   m_TagString: Untagged
@@ -42205,6 +42389,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1837497200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837497193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &1840322860 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3181094700657839240, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -47623,6 +47825,7 @@ GameObject:
   - component: {fileID: 2138990668}
   - component: {fileID: 2138990672}
   - component: {fileID: 2138990671}
+  - component: {fileID: 2138990673}
   m_Layer: 6
   m_Name: step071 (5)
   m_TagString: Untagged
@@ -47763,6 +47966,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2138990673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138990666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feced347d902705db2668de1a099f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::scan
+  scanObject:
+  - {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
+  duration: 10
+  size: 5
+  simSpeed: 1
+  colliders: []
 --- !u!1 &2142456322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2358336205282690494, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -47934,7 +48155,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 915749949085292551, guid: 1bd3a3b90ce610d4098cfc9ecb7cd578, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 880788919}
   m_SourcePrefab: {fileID: 100100000, guid: 1bd3a3b90ce610d4098cfc9ecb7cd578, type: 3}
 --- !u!1001 &1069402577071093193
 PrefabInstance:
@@ -48081,31 +48305,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -56.631
+      value: -49.514
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.731
+      value: 15.17
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.139
+      value: -24.884
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49999997
+      value: 0.23363034
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.50000006
+      value: -0.6673956
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.50000006
+      value: -0.66739565
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.49999997
+      value: 0.23363033
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -48113,20 +48337,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -141.414
       objectReference: {fileID: 0}
     - target: {fileID: 2679155625741960851, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7651727410391795160, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: colliders.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651727410391795160, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
+      propertyPath: scanObject.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651727410391795160, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: 'colliders.Array.data[0]'
       value: 
       objectReference: {fileID: 1695304319999576584}
+    - target: {fileID: 7651727410391795160, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
+      propertyPath: 'scanObject.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8546356691610741914, guid: 110e8bc251c6e8c1bb5816fcc6dea8c6, type: 3}
+    - target: {fileID: 7651727410391795160, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
+      propertyPath: 'scanObject.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8546356691610741914, guid: 186f0797bbb38a64ea4b51a0576ec0c4, type: 3}
     - target: {fileID: 8409196882804502061, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: ammo
       value: 6
@@ -48134,7 +48370,7 @@ PrefabInstance:
     - target: {fileID: 8409196882804502061, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: gunHand
       value: 
-      objectReference: {fileID: 184940227}
+      objectReference: {fileID: 8546356691610741914, guid: ebe7af25646a7f44fa22c9db5675fd7f, type: 3}
     - target: {fileID: 8871748400316522066, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_Name
       value: RevolverGun
