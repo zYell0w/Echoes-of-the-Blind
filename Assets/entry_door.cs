@@ -8,7 +8,7 @@ public class entry_door : MonoBehaviour , IMission
     [SerializeField] GameObject BellObjectToShow;
 
     float counter = 0;
-    float time = 150;
+    float time = 100;
     [SerializeField] Vector3 spawnPoint = new();
 
     public bool IsDone()

@@ -63,7 +63,7 @@ public class tütsü : MonoBehaviour ,IMission
         float zaman = 0f;
         tütsüCounter++;
         
-        while (zaman < 10f) 
+        while (zaman < 60f) 
         {
             Debug.Log("yandım");
             Debug.Log(tütsüCounter + "tanemiz de yanıyor");

@@ -12,12 +12,18 @@ public class broken_window : MonoBehaviour , IMission
     float counter= 0;
     [SerializeField] float time;
     [SerializeField] float max = 90;
-    [SerializeField] float min = 30;
+    [SerializeField] float min = 60;
 
     public void SetCompletion(float degree)
     {
-        if(degree>0)
-            woodCount = (int) Math.Round(degree * (float)woodObjectsToShow.Count / 100);
+        if (degree > 0)
+        {
+            woodCount = (int)Math.Round(degree * (float)woodObjectsToShow.Count / 100);
+            if(woodCount == 0)
+                woodCount = 1;
+        }
+            
+
         else
             woodCount = Math.Min(woodCount,Math.Abs((int) Math.Round(degree * (float)woodObjectsToShow.Count / 100)));
         _update_wood();
