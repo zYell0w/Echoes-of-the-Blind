@@ -24104,6 +24104,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2566582883820868902, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
+--- !u!1 &1178594915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899124098547058768, guid: 7e7c9ddab1c39e445835d7867f5d8c35, type: 3}
+  m_PrefabInstance: {fileID: 1774058317936987908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179370757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4205507644920759042, guid: b6b0f7d81ed9f6d4b8aea22e2f385b7f, type: 3}
@@ -37301,7 +37306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1590595630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47957,7 +47962,7 @@ PrefabInstance:
     - target: {fileID: 8409196882804502061, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: gunHand
       value: 
-      objectReference: {fileID: 8546356691610741914, guid: ebe7af25646a7f44fa22c9db5675fd7f, type: 3}
+      objectReference: {fileID: 1178594915}
     - target: {fileID: 8871748400316522066, guid: 4654a21310c43224aa66cf0650099b63, type: 3}
       propertyPath: m_Name
       value: RevolverGun
