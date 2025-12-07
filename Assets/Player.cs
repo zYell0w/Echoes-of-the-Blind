@@ -4,8 +4,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour , Iscanlistener
 {
-    [SerializeField] public Item Item {get; set;}
-    [SerializeField] public Gun Weapon {get; set;}
+     public Item Item {get; set;}
+     public Gun Weapon {get; set;}
     [SerializeField] private GameObject finishScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
