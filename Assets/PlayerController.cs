@@ -138,7 +138,8 @@ public class PlayerController : MonoBehaviour
         if (_input.scan > 0 && scanCounter >= scanCooldown)
         {
             //var a = _canvas.transform.Find("clap").gameObject;
-            _scanner.StartWave();
+            //_scanner.StartWave();
+            StartCoroutine(CreateDoubleScan());
             StartCoroutine(ShowImage(clap));
             AudioManager.instance.Play("FingerSnapSound");
             scanCounter=0;
@@ -156,7 +157,14 @@ public class PlayerController : MonoBehaviour
                 _player.Weapon.Use();
         }
     }
+    IEnumerator CreateDoubleScan()
+    {
+        _scanner.StartWave();
+        yield return new WaitForSeconds(0.5f);
+        _scanner.StartWave();
 
+        yield return null;
+    }
     IEnumerator ShowImage(GameObject clapImageObject)
     {
         clapImage = clap.GetComponent<Image>();

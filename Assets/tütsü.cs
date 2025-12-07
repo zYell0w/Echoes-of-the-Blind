@@ -63,7 +63,7 @@ public class tütsü : MonoBehaviour ,IMission
         float zaman = 0f;
         tütsüCounter++;
         
-        while (zaman < 10f) 
+        while (zaman < 60f) 
         {
             Debug.Log("yandım");
             Debug.Log(tütsüCounter + "tanemiz de yanıyor");
@@ -107,7 +107,7 @@ public class tütsü : MonoBehaviour ,IMission
         if(scan!=null)
         {
           
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false, waveIndex: 3);
         }
     }
 

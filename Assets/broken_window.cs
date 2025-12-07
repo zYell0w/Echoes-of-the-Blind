@@ -6,18 +6,24 @@ public class broken_window : MonoBehaviour , IMission
 {
     [SerializeField] private int woodCount = 0;
     [SerializeField] List<GameObject> woodObjectsToShow = new();
-
+    scan _scan;
     [SerializeField] Vector3 spawnPoint = new();
     
     float counter= 0;
     [SerializeField] float time;
     [SerializeField] float max = 90;
-    [SerializeField] float min = 30;
+    [SerializeField] float min = 60;
 
     public void SetCompletion(float degree)
     {
-        if(degree>0)
-            woodCount = (int) Math.Round(degree * (float)woodObjectsToShow.Count / 100);
+        if (degree > 0)
+        {
+            woodCount = (int)Math.Round(degree * (float)woodObjectsToShow.Count / 100);
+            if(woodCount == 0)
+                woodCount = 1;
+        }
+            
+
         else
             woodCount = Math.Min(woodCount,Math.Abs((int) Math.Round(degree * (float)woodObjectsToShow.Count / 100)));
         _update_wood();
@@ -58,7 +64,8 @@ public class broken_window : MonoBehaviour , IMission
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach(GameObject wood in woodObjectsToShow)
+        _scan = GetComponent<scan>();
+        foreach (GameObject wood in woodObjectsToShow)
         {
             wood.SetActive(false);
         }
@@ -135,8 +142,8 @@ public class broken_window : MonoBehaviour , IMission
     {
         if(scan!=null)
         {
-          
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false, waveIndex: 3);
         }
     }
 }

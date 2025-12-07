@@ -19,7 +19,7 @@ public class normal_window : MonoBehaviour , IMission
         holding = true;
         if (counter < max)
         {
-            counter += Time.deltaTime;
+            counter += 2*Time.deltaTime;
             AudioManager.instance.Play("CurtainClosingSound");
         }
 
@@ -33,8 +33,8 @@ public class normal_window : MonoBehaviour , IMission
     {
         if(scan!=null)
         {
-          
-            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false);
+            
+            scan.StartWave(position:transform.position,size:2,TriggersEnabled:false, waveIndex: 3);
         }
     }
 
@@ -52,7 +52,7 @@ public class normal_window : MonoBehaviour , IMission
     {
         //aha buraya azalma şeysi yapılabilir
         if(holding == false && counter > min)
-            counter -= Time.deltaTime / 3;
+            counter -= Time.deltaTime / 4;
         else
             holding = false;
 
@@ -77,7 +77,7 @@ public class normal_window : MonoBehaviour , IMission
     {
         if(degreeOutOf100>0)
         {
-            counter=Math.Max(min,degreeOutOf100 * max / 100);
+            counter=Math.Max(counter,degreeOutOf100 * max / 100);
         }
         else
         {

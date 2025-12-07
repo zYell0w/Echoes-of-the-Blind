@@ -11,7 +11,7 @@ public class mission_controller : MonoBehaviour
     [SerializeField] public Enemy enemyPrefab;
 
     float missionCheckCounter = 0f;
-    float missionCheckTime = 15f;
+    float missionCheckTime = 60f;
     GameObject player;
 
     [SerializeField] List<GameObject> objs = new();
