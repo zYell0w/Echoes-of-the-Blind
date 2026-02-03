@@ -11,6 +11,9 @@ public class entry_door : MonoBehaviour , IMission
     float time = 100;
     [SerializeField] Vector3 spawnPoint = new();
 
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
+
     public bool IsDone()
     {
         if (barricaded)

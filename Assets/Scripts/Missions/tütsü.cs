@@ -16,6 +16,9 @@ public class tütsü : MonoBehaviour ,IMission
 
     scan _scan;
 
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
+
     void Start()
     {
         _scan = GetComponent<scan>();

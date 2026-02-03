@@ -9,6 +9,8 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public event System.Action<InteractInfo> PlayerInteractedWithSomething;
     private CharacterInput _input;
     
     private CharacterController _controller;
@@ -29,7 +31,6 @@ public class PlayerController : MonoBehaviour
     private int currentFrame = 0;
     private bool isPlaying = false;
     private float frameDelay = 0.1f;
-
 
 
 
@@ -205,6 +206,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, InteractRange, layerMask))
             {
                 hit.transform.gameObject.GetComponent<IInteractable>().OnInteract(_player);
+                PlayerInteractedWithSomething?.Invoke(hit.transform.gameObject.GetComponent<IInteractable>().Info);
             }
         }
     }
