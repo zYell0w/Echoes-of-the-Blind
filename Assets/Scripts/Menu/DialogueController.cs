@@ -18,9 +18,9 @@ public class DialogueController : MonoBehaviour
     [System.Serializable]
     private class Dialogues
     {
-        public Dialogue[] ItemDescriptions;
+        public Dialogue[] Descriptions;
     }
-    static Dialogues ItemDescriptionsInJson;
+    static Dialogues DescriptionsInJson;
     [SerializeField] TextMeshProUGUI DialogueText;
 
     [SerializeField] TextAsset TextJson;
@@ -32,7 +32,7 @@ public class DialogueController : MonoBehaviour
         if(DialogueText==null)
             Debug.LogError(".");
         DialogueText.gameObject.SetActive(false);
-        ItemDescriptionsInJson = JsonUtility.FromJson<Dialogues>(TextJson.text);
+        DescriptionsInJson = JsonUtility.FromJson<Dialogues>(TextJson.text);
         PlayerController controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         controller.PlayerInteractedWithSomething+=OnInteract;
     }
@@ -47,7 +47,7 @@ public class DialogueController : MonoBehaviour
     }
     string GetTextFromName(string name)
     {
-        foreach(Dialogue dia in ItemDescriptionsInJson.ItemDescriptions)
+        foreach(Dialogue dia in DescriptionsInJson.Descriptions)
         {
             if(name == dia.name)    
                 return dia.text;
