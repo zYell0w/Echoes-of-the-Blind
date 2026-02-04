@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlistener{
@@ -6,6 +7,15 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlist
 
     [field:SerializeField]
     public InteractInfo Info { get; set; }
+
+    bool isWaitingForTimeout = false;
+    IEnumerator timeoutCoroutine(float time)
+    {
+        isWaitingForTimeout = true;
+        yield return new WaitForSeconds(time);
+        yield return null;
+        isWaitingForTimeout = false;
+    }
 
     public void Drop(Player interactee)
     {
@@ -24,12 +34,13 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlist
         GetComponent<Rigidbody>().isKinematic = false;
         GetComponent<MeshRenderer>().enabled = true;
 
-
+        StartCoroutine(timeoutCoroutine(0.4f));
 
     }
 
     public void Equip(Player interactee)
     {
+
         if(interactee.Item != null)
             interactee.Item.Drop(interactee);
         interactee.Item = this;
@@ -51,7 +62,12 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlist
         
         //transform.localPosition = Vector3.forward * 2;
         //transform.localRotation = Quaternion.identity;
+
+        StartCoroutine(timeoutCoroutine(0.4f));
+
+
     }
+    
 
     void OnCollisionEnter(Collision collision)
     {
@@ -66,8 +82,9 @@ public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlist
 
     public void OnInteract(Player interactee)
     {
-       Equip(interactee);
-     
+        if(isWaitingForTimeout)
+            return;
+        Equip(interactee);     
     }
 
         public void ScanDetected(Vector3? scanLocation = null, scan scan = null)
