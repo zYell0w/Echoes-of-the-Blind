@@ -25,6 +25,8 @@ public class Gun : MonoBehaviour, IInteractable , IEquipable , Iscanlistener
     LayerMask layerMask;
 
     scan _scan;
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
 
     public void Start()
     {

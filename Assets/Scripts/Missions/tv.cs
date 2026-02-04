@@ -16,6 +16,8 @@ public class tv : MonoBehaviour , IMission
 
     bool open = false;
 
+    public InteractInfo Info { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public Vector3 GetSpawnPointForEnemy()
     {
         return spawnPoint;

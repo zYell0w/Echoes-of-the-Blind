@@ -14,6 +14,10 @@ public class normal_window : MonoBehaviour , IMission
     GameObject perde ;
     Vector3 perdeScale;
     float startX;
+
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
+
     public void OnInteract(Player interactee)
     {
         holding = true;

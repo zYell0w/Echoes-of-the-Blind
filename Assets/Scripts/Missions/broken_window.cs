@@ -14,6 +14,9 @@ public class broken_window : MonoBehaviour , IMission
     [SerializeField] float max = 90;
     [SerializeField] float min = 60;
 
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
+
     public void SetCompletion(float degree)
     {
         if (degree > 0)

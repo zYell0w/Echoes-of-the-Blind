@@ -1,17 +1,23 @@
+using System;
 using UnityEngine;
 
 public class AmmoBox : MonoBehaviour , IInteractable, Iscanlistener
 {
     scan _scan;
+ [field:SerializeField]
+    public InteractInfo Info { get; set; }
 
     public void Start()
     {
+        Info.name = "ammo_box1";
         _scan = GetComponent<scan>();
     }
     public void OnInteract(Player interactee)
     {
         if(interactee.Weapon?.GetComponent<Gun>()!=null)
         {
+            Info.name = "ammo_box";
+            
             interactee.Weapon.GetComponent<Gun>().Reload();
             AudioManager.instance.Play("AmmoSound");
         }

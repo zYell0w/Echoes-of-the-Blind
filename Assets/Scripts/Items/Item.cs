@@ -3,7 +3,10 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour ,IInteractable , IEquipable,Iscanlistener{
     private int _dropped = 0;
     [SerializeField] scan scan;
-   
+
+    [field:SerializeField]
+    public InteractInfo Info { get; set; }
+
     public void Drop(Player interactee)
     {
         _dropped = 3;
