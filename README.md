@@ -50,12 +50,12 @@ Open `Assets/Scenes/entry.unity` and enter Play Mode. The entry scene leads into
 
 | Action | Binding |
 | --- | --- |
-| Move | `WASD` / arrow keys |
+| Move | `WASD` |
 | Look | Mouse |
 | Attack | Left mouse button |
 | Interact | `E` |
 | Scan | `Space` |
-| Walk (slow) | `Left Shift` |
+| Walk | `Left Shift` |
 | Crouch | `C` |
 | Previous / next item | `1` / `2` |
 | Drop item | `Q` |
@@ -66,6 +66,11 @@ Open `Assets/Scenes/entry.unity` and enter Play Mode. The entry scene leads into
 The scan system is the core mechanic of the game. The world is revealed through expanding particle waves: the player emits a pulse, and anything the wave touches answers with its own smaller echo wave.
 
 Waves can start from many sources — the scan input, footsteps, gunshots, item impacts, and noise-making mission objects such as the TV or the noise maker. Every source goes through `scan.StartWave()`, which spawns a wave prefab and registers scene colliders as particle triggers. When a wave particle reaches a registered collider, `scandetector` notifies the hit object through the `Iscanlistener` interface. Each collider reacts only once per wave: after the hit it is removed from the trigger list and the particle is re-emitted from the wave origin.
+
+<details>
+<summary><b>📡 Wave Mechanic Flowchart</b></summary>
+<br>
+<div align="center" style="width: 70%; margin: auto;">
 
 ```mermaid
 flowchart TD
@@ -86,7 +91,6 @@ flowchart TD
     hit -- "No" --> life{"Wave duration over?"}
     life -- "No" --> expand
     life -- "Yes" --> destroy([Wave object is destroyed])
-```
 
 The player, enemies, items, and mission objects all implement `Iscanlistener`, so each of them reacts to an incoming wave in its own way.
 
@@ -105,3 +109,7 @@ The build scene order is `entry.unity` followed by `MainScene.unity`. Open **Fil
 ## License
 
 This project is licensed under the GNU General Public License, Version 3. See the `LICENSE` file for details.
+
+## Tutorials & References
+
+* Base Wave Mechanic: [Gabriel Aguiar Prod. - Unity Shader Graph Tutorial](https://www.youtube.com/watch?v=9DshpqhKDz0)
