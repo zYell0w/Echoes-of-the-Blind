@@ -1,0 +1,23 @@
+{
+    "Descriptions" :
+    [
+        {
+            "name" : "gun",
+            "text" : "I can use this to shoot"
+        },
+        {
+            "name" : "chair" ,
+            "text" : "I think I can use this on the front door"
+        },
+        {
+            "name" : "ammo_box",
+            "text" : "I can use this to reload my gun"
+        }
+        ,
+        {
+            "name" : "ammo_box1",
+            "text" : "Only If I had a gun to use this spare ammo"
+        }
+    ]
+    
+}
