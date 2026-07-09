@@ -68,7 +68,7 @@ The scan system is the core mechanic of the game. The world is revealed through 
 Waves can start from many sources — the scan input, footsteps, gunshots, item impacts, and noise-making mission objects such as the TV or the noise maker. Every source goes through `scan.StartWave()`, which spawns a wave prefab and registers scene colliders as particle triggers. When a wave particle reaches a registered collider, `scandetector` notifies the hit object through the `Iscanlistener` interface. Each collider reacts only once per wave: after the hit it is removed from the trigger list and the particle is re-emitted from the wave origin.
 
 <details>
-<summary><b>📡 Wave Mechanic Flowchart</b></summary>
+<summary><b>Wave Mechanic Flowchart</b></summary>
 <br>
 <div align="center" style="width: 70%; margin: auto;">
 
@@ -94,6 +94,7 @@ flowchart TD
 ```
 
 The player, enemies, items, and mission objects all implement `Iscanlistener`, so each of them reacts to an incoming wave in its own way.
+</details>
 
 ## Development Notes
 
