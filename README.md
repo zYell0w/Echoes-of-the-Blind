@@ -91,6 +91,7 @@ flowchart TD
     hit -- "No" --> life{"Wave duration over?"}
     life -- "No" --> expand
     life -- "Yes" --> destroy([Wave object is destroyed])
+```
 
 The player, enemies, items, and mission objects all implement `Iscanlistener`, so each of them reacts to an incoming wave in its own way.
 
